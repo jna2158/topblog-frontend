@@ -1,18 +1,26 @@
 import React from "react";
 import Checkout from "../../pages/Checkout";
-import { useState } from "react";
 import Success from "../../pages/Success";
+import Fail from "../../pages/Fail";
+import usePaymentStore from "../../store/usePaymentStore";
+import { useEffect } from "react";
 
 export default function PaymentPopup() {
-  const [isPaymentSuccess, setIsPaymentSuccess] = useState(false);
+  const { status } = usePaymentStore();
+
+  useEffect(() => {
+    console.log("status", status);
+  }, [status]);
 
   return (
     <div className="popup-container">
       <div className="popup">
-        {isPaymentSuccess ? (
+        {status === "success" ? (
           <Success />
+        ) : status === "fail" ? (
+          <Fail />
         ) : (
-          <Checkout setIsPaymentSuccess={setIsPaymentSuccess} />
+          <Checkout />
         )}
       </div>
     </div>

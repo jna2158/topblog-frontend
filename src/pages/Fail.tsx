@@ -16,7 +16,7 @@ export default function Success() {
   return (
     <div className="popup-container">
       <div className="popup">
-        <h1 className="text-3xl font-bold mb-4">결제를 완료했어요!</h1>
+        <h1 className="text-3xl font-bold mb-4">결제를 실패했어요..</h1>
         <p className="text-lg mb-2">결제 키: {paymentKey}</p>
         <p className="text-lg mb-2">주문 ID: {orderId}</p>
         <p className="text-lg">결제 금액: {amount}원</p>
