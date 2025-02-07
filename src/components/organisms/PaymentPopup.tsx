@@ -13,7 +13,7 @@ export default function PaymentPopup() {
   }, [status]);
 
   return (
-    <div className="popup-container">
+    <div className="popup-overlay">
       <div className="popup">
         {status === "success" ? (
           <Success />

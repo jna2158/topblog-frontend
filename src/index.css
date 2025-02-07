@@ -7,7 +7,7 @@
     @apply bg-blue-500 text-white p-2 rounded;
   }
   .popup {
-    @apply bg-white p-5 shadow-lg w-1/2;
+    @apply bg-white p-5 shadow-2xl w-1/2 rounded-lg;
   }
 }
 
@@ -15,21 +15,7 @@
   .popup-container {
     @apply fixed inset-0 flex items-center justify-center;
   }
-}
-
-@keyframes checkmark {
-  0% {
-    stroke-dashoffset: 50;
+  .popup-overlay {
+    @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center;
   }
-  100% {
-    stroke-dashoffset: 0;
-  }
-}
-
-.animate-checkmark {
-  stroke: white;
-  stroke-width: 2;
-  stroke-dasharray: 50;
-  stroke-dashoffset: 50;
-  animation: checkmark 0.5s ease-in-out forwards;
 }
