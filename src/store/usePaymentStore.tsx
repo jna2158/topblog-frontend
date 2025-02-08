@@ -12,7 +12,6 @@ const usePaymentStore = create(
     (set) => ({
       status: "pending",
       setStatus: (status: "pending" | "success" | "fail") => {
-        console.log("status", status);
         set({ status });
       },
     }),

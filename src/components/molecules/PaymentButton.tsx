@@ -1,13 +1,10 @@
 import React from "react";
 import Button from "../atoms/Button";
-import usePaymentStore from "../../store/usePaymentStore";
 
 export default function PaymentButton({ widgets }: { widgets: any }) {
-  const { status, setStatus } = usePaymentStore();
-
   const handleClickPaymentBtn = async () => {
     if (!widgets) return;
-    console.log("1번");
+
     try {
       await widgets.requestPayment({
         orderId: "Z8FY0cyOVhKYDFZNlj1iI",
