@@ -1,5 +1,5 @@
 import React from "react";
-import usePaymentStore from "../store/usePaymentStore";
+import usePaymentStore from "../../store/usePaymentStore";
 
 export default function Success() {
   const urlParams = new URLSearchParams(window.location.search);

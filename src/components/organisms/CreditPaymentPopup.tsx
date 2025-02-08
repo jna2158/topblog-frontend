@@ -1,10 +1,10 @@
 import React from "react";
-import Checkout from "../../pages/Checkout";
-import Success from "../../pages/Success";
-import Fail from "../../pages/Fail";
+import Checkout from "../../pages/credit/CreditCheckout";
 import usePaymentStore from "../../store/usePaymentStore";
+import Success from "../../pages/credit/Success";
+import Fail from "../../pages/credit/Fail";
 
-export default function PaymentPopup() {
+export default function CreditPaymentPopup() {
   const { status } = usePaymentStore();
 
   return (

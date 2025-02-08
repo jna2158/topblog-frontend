@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { loadTossPayments } from "@tosspayments/tosspayments-sdk";
 
-const PaymentWidget = ({
+export default function CreditPaymentWidget({
   widgets,
   setWidgets,
 }: {
   widgets: any;
   setWidgets: any;
-}) => {
+}) {
   const clientKey = process.env.REACT_APP_TOSS_PAYMENTS_CLIENT_KEY || "";
   const [selectedProduct, setSelectedProduct] = useState(500);
 
@@ -82,6 +82,4 @@ const PaymentWidget = ({
       <div id="payment-method" className="mt-6"></div>
     </div>
   );
-};
-
-export default PaymentWidget;
+}

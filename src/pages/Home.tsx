@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Button from "../components/atoms/Button";
-import PaymentPopup from "../components/organisms/PaymentPopup";
+import CreditPaymentPopup from "../components/organisms/CreditPaymentPopup";
 import useModalStore from "../store/useModalStore";
 import usePaymentStore from "../store/usePaymentStore";
 
@@ -31,8 +31,11 @@ export default function Home() {
 
   return (
     <>
-      <Button label="결제하기" onClick={() => setPaymentsModalOpen(true)} />
-      {paymentsModal.isOpen && <PaymentPopup />}
+      <Button
+        label="크레딧 충전하기"
+        onClick={() => setPaymentsModalOpen(true)}
+      />
+      {paymentsModal.isOpen && <CreditPaymentPopup />}
     </>
   );
 }
