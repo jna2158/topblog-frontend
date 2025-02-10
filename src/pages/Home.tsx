@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, CSSProperties } from "react";
 import Button from "../components/atoms/Button";
 import useModalStore from "../store/useModalStore";
 import usePaymentStore from "../store/usePaymentStore";
@@ -10,39 +10,45 @@ export default function Home() {
   const { proModal, setProModalOpen } = useModalStore();
   const { setStatus } = usePaymentStore();
 
-  // URL 파라미터에 따라 모달을 여는 함수
-  const handleModalOpen = (
-    param: string,
-    setModalOpen: (open: boolean) => void
-  ) => {
+  // 결제 완료 후 결제완료 팝업 열기
+  useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    const status = urlParams.get(param);
-
+    const status = urlParams.get("success");
     switch (status) {
       case "true":
-        setModalOpen(true);
+        setCreditModalOpen(true);
         setStatus("success");
         break;
       case "false":
-        setModalOpen(true);
+        setCreditModalOpen(true);
         setStatus("fail");
         break;
       default:
         break;
     }
-  };
-
-  useEffect(() => {
-    handleModalOpen("success", setCreditModalOpen);
   }, [setCreditModalOpen, setStatus]);
 
   useEffect(() => {
-    handleModalOpen("pro", setProModalOpen);
+    const urlParams = new URLSearchParams(window.location.search);
+    const status = urlParams.get("pro");
+
+    switch (status) {
+      case "true":
+        setProModalOpen(true);
+        setStatus("success");
+        break;
+      case "false":
+        setProModalOpen(true);
+        setStatus("fail");
+        break;
+      default:
+        break;
+    }
   }, [setProModalOpen, setStatus]);
 
   const imageStyle = { width: "100%", maxWidth: "1000px", margin: "0 auto" };
-  const relativeStyle = {
-    position: "relative" as const,
+  const relativeStyle: CSSProperties = {
+    position: "relative",
     width: "100%",
     margin: "0 auto",
     maxWidth: "1000px",
