@@ -34,5 +34,5 @@ export default function ProPaymentWidget() {
     fetchPayment();
   }, [clientKey]);
 
-  return <Button label="카드 등록하기" onClick={() => {}} />;
+  return null;
 }
