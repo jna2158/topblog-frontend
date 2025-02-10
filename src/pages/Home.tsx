@@ -10,51 +10,47 @@ export default function Home() {
   const { proModal, setProModalOpen } = useModalStore();
   const { setStatus } = usePaymentStore();
 
-  // 결제 완료 후 결제완료 팝업 열기
-  useEffect(() => {
+  // URL 파라미터에 따라 모달을 여는 함수
+  const handleModalOpen = (
+    param: string,
+    setModalOpen: (open: boolean) => void
+  ) => {
     const urlParams = new URLSearchParams(window.location.search);
-    const status = urlParams.get("success");
+    const status = urlParams.get(param);
+
     switch (status) {
       case "true":
-        setCreditModalOpen(true);
+        setModalOpen(true);
         setStatus("success");
         break;
       case "false":
-        setCreditModalOpen(true);
+        setModalOpen(true);
         setStatus("fail");
         break;
       default:
         break;
     }
+  };
+
+  useEffect(() => {
+    handleModalOpen("success", setCreditModalOpen);
   }, [setCreditModalOpen, setStatus]);
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const status = urlParams.get("pro");
-
-    switch (status) {
-      case "true":
-        setProModalOpen(true);
-        setStatus("success");
-        break;
-      case "false":
-        setProModalOpen(true);
-        setStatus("fail");
-        break;
-      default:
-        break;
-    }
+    handleModalOpen("pro", setProModalOpen);
   }, [setProModalOpen, setStatus]);
+
+  const imageStyle = { width: "100%", maxWidth: "1000px", margin: "0 auto" };
+  const relativeStyle = {
+    position: "relative" as const,
+    width: "100%",
+    margin: "0 auto",
+    maxWidth: "1000px",
+  };
+
   return (
     <>
-      <div
-        style={{
-          position: "relative",
-          width: "100%",
-          maxWidth: "1000px",
-          margin: "0 auto",
-        }}
-      >
+      <div style={relativeStyle}>
         <img
           src="/images/topblog_1_01.jpg"
           alt="logo"
@@ -62,14 +58,7 @@ export default function Home() {
         />
       </div>
 
-      <div
-        style={{
-          position: "relative",
-          width: "100%",
-          margin: "0 auto",
-          maxWidth: "1000px",
-        }}
-      >
+      <div style={relativeStyle}>
         <img
           src="/images/topblog_1_02.gif"
           alt="logo"
@@ -77,44 +66,14 @@ export default function Home() {
         />
       </div>
 
-      <img
-        src="/images/topblog_1_03.jpg"
-        alt="logo"
-        style={{ width: "100%", maxWidth: "1000px", margin: "0 auto" }}
-      />
-      <img
-        src="/images/topblog_1_04.jpg"
-        alt="logo"
-        style={{ width: "100%", maxWidth: "1000px", margin: "0 auto" }}
-      />
-      <img
-        src="/images/topblog_1_05.jpg"
-        alt="logo"
-        style={{ width: "100%", maxWidth: "1000px", margin: "0 auto" }}
-      />
-      <img
-        src="/images/topblog_1_06.jpg"
-        alt="logo"
-        style={{ width: "100%", maxWidth: "1000px", margin: "0 auto" }}
-      />
-      <img
-        src="/images/topblog_1_07.jpg"
-        alt="logo"
-        style={{ width: "100%", maxWidth: "1000px", margin: "0 auto" }}
-      />
-      <img
-        src="/images/topblog_1_08.jpg"
-        alt="logo"
-        style={{ width: "100%", maxWidth: "1000px", margin: "0 auto" }}
-      />
-      <div
-        style={{
-          position: "relative",
-          width: "100%",
-          margin: "0 auto",
-          maxWidth: "1000px",
-        }}
-      >
+      <img src="/images/topblog_1_03.jpg" alt="logo" style={imageStyle} />
+      <img src="/images/topblog_1_04.jpg" alt="logo" style={imageStyle} />
+      <img src="/images/topblog_1_05.jpg" alt="logo" style={imageStyle} />
+      <img src="/images/topblog_1_06.jpg" alt="logo" style={imageStyle} />
+      <img src="/images/topblog_1_07.jpg" alt="logo" style={imageStyle} />
+      <img src="/images/topblog_1_08.jpg" alt="logo" style={imageStyle} />
+
+      <div style={relativeStyle}>
         <img
           src="/images/topblog_1_09.gif"
           alt="gif"
@@ -130,21 +89,10 @@ export default function Home() {
           style={{ width: "100%" }}
         />
       </div>
-      <img
-        src="/images/topblog_1_10.jpg"
-        alt="logo"
-        style={{ width: "100%", maxWidth: "1000px", margin: "0 auto" }}
-      />
-      <img
-        src="/images/topblog_1_11.jpg"
-        alt="logo"
-        style={{ width: "100%", maxWidth: "1000px", margin: "0 auto" }}
-      />
-      <img
-        src="/images/topblog_1_12.jpg"
-        alt="logo"
-        style={{ width: "100%", maxWidth: "1000px", margin: "0 auto" }}
-      />
+
+      <img src="/images/topblog_1_10.jpg" alt="logo" style={imageStyle} />
+      <img src="/images/topblog_1_11.jpg" alt="logo" style={imageStyle} />
+      <img src="/images/topblog_1_12.jpg" alt="logo" style={imageStyle} />
 
       {/* <Button
         label="크레딧 충전하기"
