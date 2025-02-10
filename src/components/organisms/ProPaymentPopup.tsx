@@ -1,12 +1,12 @@
 import React from "react";
-import CreditCheckout from "../../pages/credit/CreditCheckout";
+import ProCheckout from "../../pages/pro/ProCheckout";
 import usePaymentStore from "../../store/usePaymentStore";
-import Success from "../../pages/credit/Success";
-import Fail from "../../pages/credit/Fail";
+import Success from "../../pages/pro/Success";
+import Fail from "../../pages/pro/Fail";
 
-export default function CreditPaymentPopup() {
+export default function ProPaymentPopup() {
   const { status } = usePaymentStore();
-  console.log("status", status);
+
   return (
     <div className="popup-overlay">
       <div className="popup">
@@ -15,7 +15,7 @@ export default function CreditPaymentPopup() {
         ) : status === "fail" ? (
           <Fail />
         ) : (
-          <CreditCheckout />
+          <ProCheckout />
         )}
       </div>
     </div>

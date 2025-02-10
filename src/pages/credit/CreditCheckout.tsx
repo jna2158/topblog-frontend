@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import CreditPaymentButton from "../../components/molecules/CreditPaymentButton";
 import CreditPaymentWidget from "../../components/organisms/CreditPaymentWidget";
 
-export default function Checkout() {
+export default function CreditCheckout() {
   const [widgets, setWidgets] = useState<any>(null);
 
   return (

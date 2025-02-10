@@ -1,20 +1,29 @@
 import { create } from "zustand";
 
 interface ModalState {
-  paymentsModal: {
+  creditModal: {
     isOpen: boolean;
     data?: any;
   };
-  setPaymentsModalOpen: (isOpen: boolean, data?: any) => void;
+  proModal: {
+    isOpen: boolean;
+  };
+  setCreditModalOpen: (isOpen: boolean, data?: any) => void;
+  setProModalOpen: (isOpen: boolean) => void;
 }
 
 const useModalStore = create<ModalState>((set) => ({
-  paymentsModal: { isOpen: false },
+  creditModal: { isOpen: false },
+  proModal: { isOpen: false },
 
   // paymentsModal 열기, 닫기
-  setPaymentsModalOpen: (isOpen, data) =>
+  setCreditModalOpen: (isOpen, data) =>
     set(() => ({
-      paymentsModal: { isOpen, data },
+      creditModal: { isOpen, data },
+    })),
+  setProModalOpen: (isOpen) =>
+    set(() => ({
+      proModal: { isOpen },
     })),
 }));
 
