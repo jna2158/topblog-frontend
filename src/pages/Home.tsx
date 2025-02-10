@@ -51,6 +51,7 @@ export default function Home() {
         style={{
           position: "relative",
           width: "100%",
+          maxWidth: "1000px",
           margin: "0 auto",
         }}
       >
@@ -59,19 +60,6 @@ export default function Home() {
           alt="logo"
           style={{ width: "100%" }}
         />
-        <button
-          style={{
-            position: "absolute",
-            top: "10px",
-            left: "10px",
-            backgroundColor: "rgba(255, 255, 255, 0.7)",
-            border: "none",
-            padding: "10px",
-            cursor: "pointer",
-          }}
-        >
-          버튼
-        </button>
       </div>
 
       <div
@@ -79,6 +67,7 @@ export default function Home() {
           position: "relative",
           width: "100%",
           margin: "0 auto",
+          maxWidth: "1000px",
         }}
       >
         <img
@@ -87,41 +76,43 @@ export default function Home() {
           style={{ width: "100%" }}
         />
       </div>
+
       <img
         src="/images/topblog_1_03.jpg"
         alt="logo"
-        style={{ width: "100%" }}
+        style={{ width: "100%", maxWidth: "1000px", margin: "0 auto" }}
       />
       <img
         src="/images/topblog_1_04.jpg"
         alt="logo"
-        style={{ width: "100%" }}
+        style={{ width: "100%", maxWidth: "1000px", margin: "0 auto" }}
       />
       <img
         src="/images/topblog_1_05.jpg"
         alt="logo"
-        style={{ width: "100%" }}
+        style={{ width: "100%", maxWidth: "1000px", margin: "0 auto" }}
       />
       <img
         src="/images/topblog_1_06.jpg"
         alt="logo"
-        style={{ width: "100%" }}
+        style={{ width: "100%", maxWidth: "1000px", margin: "0 auto" }}
       />
       <img
         src="/images/topblog_1_07.jpg"
         alt="logo"
-        style={{ width: "100%" }}
+        style={{ width: "100%", maxWidth: "1000px", margin: "0 auto" }}
       />
       <img
         src="/images/topblog_1_08.jpg"
         alt="logo"
-        style={{ width: "100%" }}
+        style={{ width: "100%", maxWidth: "1000px", margin: "0 auto" }}
       />
       <div
         style={{
           position: "relative",
           width: "100%",
           margin: "0 auto",
+          maxWidth: "1000px",
         }}
       >
         <img
@@ -142,17 +133,17 @@ export default function Home() {
       <img
         src="/images/topblog_1_10.jpg"
         alt="logo"
-        style={{ width: "100%" }}
+        style={{ width: "100%", maxWidth: "1000px", margin: "0 auto" }}
       />
       <img
         src="/images/topblog_1_11.jpg"
         alt="logo"
-        style={{ width: "100%" }}
+        style={{ width: "100%", maxWidth: "1000px", margin: "0 auto" }}
       />
       <img
         src="/images/topblog_1_12.jpg"
         alt="logo"
-        style={{ width: "100%" }}
+        style={{ width: "100%", maxWidth: "1000px", margin: "0 auto" }}
       />
 
       {/* <Button
