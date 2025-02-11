@@ -12,7 +12,7 @@ export default function CardList() {
     slidesToScroll: 1,
     autoplay: true,
     arrows: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 5000,
     centerMode: true,
     centerPadding: "25%",
   };
@@ -21,19 +21,13 @@ export default function CardList() {
     <section className="mb-28 mt-16">
       <Slider {...settings}>
         <div className="px-4">
-          <Card />
+          <Card name="credit-banner" />
         </div>
         <div className="px-4">
-          <Card />
+          <Card name="kakao-banner" />
         </div>
         <div className="px-4">
-          <Card />
-        </div>
-        <div className="px-4">
-          <Card />
-        </div>
-        <div className="px-4">
-          <Card />
+          <Card name="premium-banner" />
         </div>
       </Slider>
     </section>
