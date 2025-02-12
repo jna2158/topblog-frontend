@@ -7,7 +7,7 @@ export default function GlobalNavigationBar() {
     <div className="w-full h-[5rem] bg-white border-b border-gray-200">
       <div className="flex items-center justify-between w-full h-full px-10">
         <Logo />
-        <Button label="로그인" onClick={() => {}} />
+        <Button label="로그인" onClick={() => {}} fontSize="1.3rem" />
       </div>
     </div>
   );

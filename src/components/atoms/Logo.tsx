@@ -9,8 +9,8 @@ export default function Logo() {
       className="flex items-center cursor-pointer"
       onClick={() => navigate("/")}
     >
-      <img src="/images/logo.png" alt="logo" className="w-12 h-12" />
-      <span className="text-3xl font-bold text-primary cursor-pointer ml-[-0.9rem]">
+      <img src="/images/logo.png" alt="logo" className="w-16 h-16 mb-[7px]" />
+      <span className="text-4xl font-bold text-primary cursor-pointer ml-[-1.4rem]">
         opBlog
       </span>
     </section>
