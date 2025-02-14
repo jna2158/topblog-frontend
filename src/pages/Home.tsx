@@ -4,6 +4,7 @@ import usePaymentStore from "../store/usePaymentStore";
 import GlobalNavigationBar from "../components/organisms/GlobalNavigationBar";
 import CardList from "../components/organisms/CardList";
 import BackgroundImageContainer from "../components/organisms/BackgroundImageContainer";
+import DownloadButton from "../components/molecules/DownloadButton";
 
 export default function Home() {
   const { setCreditModalOpen } = useModalStore();
@@ -40,6 +41,10 @@ export default function Home() {
     <>
       <GlobalNavigationBar />
       <CardList />
+      <section className="center gap-4 mt-12 mb-10">
+        <DownloadButton type="windows" />
+        <DownloadButton type="mac" />
+      </section>
       <BackgroundImageContainer />
 
       {/* <Button

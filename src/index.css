@@ -4,7 +4,7 @@
 
 @layer components {
   .button {
-    @apply bg-blue-500 text-white p-2 rounded;
+    @apply bg-blue-500 text-white px-6 py-3 rounded;
   }
   .popup {
     @apply bg-white p-5 shadow-2xl w-1/2 rounded-lg;
@@ -12,10 +12,22 @@
 }
 
 @layer utilities {
+  .center {
+    @apply flex items-center justify-center;
+  }
   .popup-container {
     @apply fixed inset-0 flex items-center justify-center;
   }
   .popup-overlay {
     @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center;
   }
+
+  /* .slick-prev {
+    @apply fixed left-1/3 top-1/3 z-50 bg-red-500 !important;
+  }
+
+  .slick-prev.custom-prev {
+    top: 50%;
+    transform: translateY(-50%);
+  } */
 }

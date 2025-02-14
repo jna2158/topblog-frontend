@@ -21,7 +21,7 @@ export default function BackgroundImageContainer() {
         "/images/background/07.gif",
         "/images/background/08.gif",
       ].map((src) => (
-        <BackgroundImage src={src} alt="img" />
+        <BackgroundImage key={src} src={src} alt="img" />
       ))}
 
       <div style={relativeStyle}>
@@ -45,7 +45,7 @@ export default function BackgroundImageContainer() {
         "/images/background/11.gif",
         "/images/background/12.gif",
       ].map((src) => (
-        <BackgroundImage src={src} alt="img" />
+        <BackgroundImage key={src} src={src} alt="img" />
       ))}
     </section>
   );

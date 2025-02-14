@@ -11,24 +11,25 @@ export default function CardList() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    arrows: true,
+    // arrows: true,
     autoplaySpeed: 5000,
     centerMode: true,
     centerPadding: "25%",
+    // nextArrow: <div className="slick-next">→</div>,
+    // prevArrow: <div className="slick-prev custom-prev">←</div>,
+  };
+
+  const handleKakaoClick = () => {
+    console.log("kakao");
+    window.location.href = "https://open.kakao.com/o/sZVP2Sah";
   };
 
   return (
-    <section className="mb-28 mt-16">
+    <section className="relative">
       <Slider {...settings}>
-        <div className="px-4">
-          <Card name="credit-banner" />
-        </div>
-        <div className="px-4">
-          <Card name="kakao-banner" />
-        </div>
-        <div className="px-4">
-          <Card name="premium-banner" />
-        </div>
+        <Card name="credit-banner" onClick={() => {}} />
+        <Card name="kakao-banner" onClick={handleKakaoClick} />
+        <Card name="premium-banner" onClick={() => {}} />
       </Slider>
     </section>
   );

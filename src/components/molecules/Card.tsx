@@ -2,16 +2,18 @@ import React from "react";
 
 interface CardProps {
   name: string;
+  onClick: () => void;
 }
 
-export default function Card({ name }: CardProps) {
+export default function Card({ name, onClick }: CardProps) {
   return (
-    <section className="w-full h-[30%]">
+    <div className="px-4">
       <img
         src={`/images/banner/${name}.png`}
         alt="credit-banner"
         className="w-full h-full object-cover rounded-xl cursor-pointer"
+        onClick={onClick}
       />
-    </section>
+    </div>
   );
 }
