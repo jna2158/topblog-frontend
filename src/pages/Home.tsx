@@ -42,8 +42,8 @@ export default function Home() {
       <GlobalNavigationBar />
       <CardList />
       <section className="center gap-4 mt-12 mb-10">
-        <DownloadButton type="windows" />
-        <DownloadButton type="mac" />
+        <DownloadButton os="Windows" />
+        <DownloadButton os="Mac" />
       </section>
       <BackgroundImageContainer />
 

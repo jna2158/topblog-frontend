@@ -20,7 +20,6 @@ export default function CardList() {
   };
 
   const handleKakaoClick = () => {
-    console.log("kakao");
     window.location.href = "https://open.kakao.com/o/sZVP2Sah";
   };
 

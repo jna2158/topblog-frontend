@@ -2,18 +2,25 @@ import React from "react";
 import Button from "../atoms/Button";
 import { faWindows } from "@fortawesome/free-brands-svg-icons";
 import { faApple } from "@fortawesome/free-brands-svg-icons";
+import { downloadService } from "../../service/DownloadService";
 
 type DownloadButtonProps = {
-  type: "windows" | "mac";
+  os: "Windows" | "Mac";
 };
 
-export default function DownloadButton({ type }: DownloadButtonProps) {
+const handleDownload = async (os: string) => {
+  const res = await downloadService.download(os);
+  console.log(res.data.launcher_url);
+  window.open(res.data.launcher_url, "_self");
+};
+
+export default function DownloadButton({ os }: DownloadButtonProps) {
   return (
     <Button
-      label={`${type} 다운로드`}
-      onClick={() => {}}
+      label={`${os} 다운로드`}
+      onClick={() => handleDownload(os)}
       fontSize="18px"
-      icon={type === "windows" ? faWindows : faApple}
+      icon={os === "Windows" ? faWindows : faApple}
       className="bg-gray-100 border border-gray-400 text-black hover:bg-gray-200"
     />
   );
