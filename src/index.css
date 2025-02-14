@@ -4,7 +4,7 @@
 
 @layer components {
   .button {
-    @apply bg-blue-500 text-white px-6 py-3 rounded;
+    @apply bg-blue-500 text-white px-6 py-3 rounded-xl;
   }
   .popup {
     @apply bg-white p-5 shadow-2xl w-1/2 rounded-lg;
