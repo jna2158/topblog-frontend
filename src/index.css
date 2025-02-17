@@ -4,13 +4,22 @@
 
 @layer components {
   .button {
-    @apply bg-blue-500 text-white px-6 py-3 rounded-xl;
+    @apply bg-primary text-white px-6 py-3 rounded-xl;
   }
   .popup {
     @apply bg-white p-5 shadow-2xl w-1/2 rounded-lg;
   }
   .dropdown {
     @apply absolute w-32 left-0 top-full mt-2 p-2 bg-white border border-gray-200 rounded-lg shadow-lg z-10;
+  }
+  .input {
+    @apply w-[80%] p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary;
+  }
+  .card {
+    @apply w-[25%] center flex flex-col gap-5 hover:scale-105 transition-all duration-500;
+  }
+  .card-image {
+    @apply w-full object-cover shadow-xl rounded-3xl;
   }
 }
 
@@ -22,6 +31,6 @@
     @apply fixed inset-0 flex items-center justify-center;
   }
   .popup-overlay {
-    @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center;
+    @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50;
   }
 }

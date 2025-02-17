@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import useModalStore from "../store/useModalStore";
 import usePaymentStore from "../store/usePaymentStore";
-import GlobalNavigationBar from "../components/organisms/GlobalNavigationBar";
 import CardList from "../components/organisms/CardList";
 import BackgroundImageContainer from "../components/organisms/BackgroundImageContainer";
 import DownloadButton from "../components/molecules/button/DownloadButton";
@@ -39,7 +38,6 @@ export default function Home() {
 
   return (
     <>
-      <GlobalNavigationBar />
       <CardList />
       <section className="center gap-4 mt-12 mb-10">
         <DownloadButton os="Windows" />
