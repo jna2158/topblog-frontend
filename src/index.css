@@ -9,6 +9,9 @@
   .popup {
     @apply bg-white p-5 shadow-2xl w-1/2 rounded-lg;
   }
+  .dropdown {
+    @apply absolute w-32 left-0 top-full mt-2 p-2 bg-white border border-gray-200 rounded-lg shadow-lg z-10;
+  }
 }
 
 @layer utilities {
@@ -21,13 +24,4 @@
   .popup-overlay {
     @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center;
   }
-
-  /* .slick-prev {
-    @apply fixed left-1/3 top-1/3 z-50 bg-red-500 !important;
-  }
-
-  .slick-prev.custom-prev {
-    top: 50%;
-    transform: translateY(-50%);
-  } */
 }

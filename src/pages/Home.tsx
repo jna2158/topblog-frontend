@@ -4,7 +4,7 @@ import usePaymentStore from "../store/usePaymentStore";
 import GlobalNavigationBar from "../components/organisms/GlobalNavigationBar";
 import CardList from "../components/organisms/CardList";
 import BackgroundImageContainer from "../components/organisms/BackgroundImageContainer";
-import DownloadButton from "../components/molecules/DownloadButton";
+import DownloadButton from "../components/molecules/button/DownloadButton";
 
 export default function Home() {
   const { setCreditModalOpen } = useModalStore();

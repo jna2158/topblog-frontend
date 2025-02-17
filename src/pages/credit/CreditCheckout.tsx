@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CreditPaymentButton from "../../components/molecules/CreditPaymentButton";
+import CreditPaymentButton from "../../components/molecules/button/CreditPaymentButton";
 import CreditPaymentWidget from "../../components/organisms/CreditPaymentWidget";
 
 export default function CreditCheckout() {

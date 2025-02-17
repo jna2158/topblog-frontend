@@ -1,7 +1,7 @@
 import React from "react";
-import Button from "../atoms/Button";
+import Button from "../../atoms/Button";
 
-export default function ProPaymentButton({ widgets }: { widgets: any }) {
+export default function CreditPaymentButton({ widgets }: { widgets: any }) {
   const handleClickPaymentBtn = async () => {
     if (!widgets) return;
 
