@@ -8,16 +8,14 @@ export default function ProPaymentPopup() {
   const { status } = usePaymentStore();
 
   return (
-    <div className="popup-overlay">
-      <div className="popup">
-        {status === "success" ? (
-          <Success />
-        ) : status === "fail" ? (
-          <Fail />
-        ) : (
-          <ProCheckout />
-        )}
-      </div>
-    </div>
+    <>
+      {status === "success" ? (
+        <Success />
+      ) : status === "fail" ? (
+        <Fail />
+      ) : (
+        <ProCheckout />
+      )}
+    </>
   );
 }

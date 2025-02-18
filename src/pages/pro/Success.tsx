@@ -1,24 +1,36 @@
 import React from "react";
 import usePaymentStore from "../../store/usePaymentStore";
+import Button from "../../components/atoms/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
 export default function Success() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const paymentKey = urlParams.get("paymentKey");
+  const orderId = urlParams.get("orderId");
+  const amount = urlParams.get("amount");
   const { setStatus } = usePaymentStore();
 
   const handleClickConfirmBtn = () => {
     setStatus("pending");
-    window.location.href = "/";
+    window.location.href = "/credit";
   };
 
   return (
-    <div className="popup-container">
-      <div className="popup">
-        <h1 className="text-3xl font-bold mb-4">
-          정기 결제 요청을 완료했어요!
-        </h1>
-        <p className="text-lg">결제 금액: 19,900원</p>
-        <button className="button" onClick={handleClickConfirmBtn}>
-          확인
-        </button>
+    <div className="popup-overlay">
+      <div className="popup center flex-col gap-4 p-10 w-1/4">
+        <FontAwesomeIcon
+          icon={faCircleCheck}
+          className="text-blue-500 text-8xl"
+        />
+
+        <h1 className="text-3xl font-semibold mb-4">결제를 완료했어요</h1>
+        <p className="text-sm text-gray-500">결제 내역은 결제/환불 내역 페이지를 통해 확인할 수 있어요</p>
+        <Button
+          label="확인"
+          onClick={handleClickConfirmBtn}
+          className="w-full bg-blue-400"
+        />
       </div>
     </div>
   );

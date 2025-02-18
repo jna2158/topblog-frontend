@@ -7,9 +7,10 @@ interface ModalState {
   };
   proModal: {
     isOpen: boolean;
+    data?: any;
   };
   setCreditModalOpen: (isOpen: boolean, data?: any) => void;
-  setProModalOpen: (isOpen: boolean) => void;
+  setProModalOpen: (isOpen: boolean, data?: any) => void;
 }
 
 const useModalStore = create<ModalState>((set) => ({
@@ -21,9 +22,9 @@ const useModalStore = create<ModalState>((set) => ({
     set(() => ({
       creditModal: { isOpen, data },
     })),
-  setProModalOpen: (isOpen) =>
+  setProModalOpen: (isOpen, data) =>
     set(() => ({
-      proModal: { isOpen },
+      proModal: { isOpen, data },
     })),
 }));
 

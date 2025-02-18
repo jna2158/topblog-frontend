@@ -41,8 +41,7 @@ export default function Credit() {
     };
 
     handleModal("success", setCreditModalOpen);
-    handleModal("pro", setProModalOpen);
-  }, [setCreditModalOpen, setProModalOpen, setStatus]);
+  }, [setCreditModalOpen, setStatus]);
 
   return (
     <>

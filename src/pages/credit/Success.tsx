@@ -25,6 +25,9 @@ export default function Success() {
         />
 
         <h1 className="text-3xl font-semibold mb-4">결제를 완료했어요</h1>
+        <p className="text-sm text-gray-500">
+          결제 내역은 결제/환불 내역 페이지를 통해 확인할 수 있어요
+        </p>
         <Button
           label="확인"
           onClick={handleClickConfirmBtn}

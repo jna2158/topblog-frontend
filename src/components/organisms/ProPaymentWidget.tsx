@@ -1,38 +1,48 @@
-import {
-  loadTossPayments,
-  TossPaymentsPayment,
-} from "@tosspayments/tosspayments-sdk";
-import React, { useEffect, useState } from "react";
-import Button from "../atoms/Button";
+import React, { useEffect } from "react";
+import { loadTossPayments } from "@tosspayments/tosspayments-sdk";
 
-const clientKey = process.env.REACT_APP_TOSS_PAYMENTS_API_KEY || "";
+export default function ProPaymentWidget({
+  widgets,
+  setWidgets,
+  amount,
+}: {
+  widgets: any;
+  setWidgets: any;
+  amount: string;
+}) {
+  const clientKey = process.env.REACT_APP_TOSS_PAYMENTS_CLIENT_KEY || "";
 
-export default function ProPaymentWidget() {
-  const [payment, setPayment] = useState<TossPaymentsPayment | null>(null);
-
+  // 결제위젯 로드
   useEffect(() => {
-    async function fetchPayment() {
+    const fetchPaymentWidgets = async () => {
       try {
         const tossPayments = await loadTossPayments(clientKey);
-        const payment = tossPayments.payment({
+        const newWidgets = tossPayments.widgets({
           customerKey: "jna2158",
         });
 
-        await payment.requestBillingAuth({
-          method: "CARD",
-          successUrl: window.location.origin + "?pro=true",
-          failUrl: window.location.origin + "?pro=false",
-          customerEmail: "customer123@gmail.com",
-          customerName: "김토스",
+        await newWidgets.setAmount({
+          currency: "KRW",
+          value: parseInt(amount),
         });
 
-        setPayment(payment);
-      } catch (error) {
-        console.error("Error fetching payment:", error);
-      }
-    }
-    fetchPayment();
-  }, [clientKey]);
+        await newWidgets.renderPaymentMethods({
+          selector: "#payment-method",
+          variantKey: "DEFAULT",
+        });
 
-  return null;
+        setWidgets(newWidgets);
+      } catch (error) {
+        console.error("결제위젯을 불러올 수 없습니다", error);
+      }
+    };
+
+    fetchPaymentWidgets();
+  }, [clientKey, amount]);
+
+  return (
+    <div className="relative">
+      <div id="payment-method" className="mt-6"></div>
+    </div>
+  );
 }
