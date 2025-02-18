@@ -8,12 +8,16 @@ export default function CreditCheckout() {
   const { creditModal } = useModalStore();
   return (
     <>
-      <CreditPaymentWidget
-        widgets={widgets}
-        setWidgets={setWidgets}
-        amount={creditModal.data}
-      />
-      <CreditPaymentButton widgets={widgets} />
+      <div className="popup-overlay">
+        <div className="popup w-1/3">
+          <CreditPaymentWidget
+            widgets={widgets}
+            setWidgets={setWidgets}
+            amount={creditModal.data}
+          />
+          <CreditPaymentButton widgets={widgets} />
+        </div>
+      </div>
     </>
   );
 }

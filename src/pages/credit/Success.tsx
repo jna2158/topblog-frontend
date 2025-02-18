@@ -13,15 +13,15 @@ export default function Success() {
 
   const handleClickConfirmBtn = () => {
     setStatus("pending");
-    window.location.href = "/";
+    window.location.href = "/credit";
   };
 
   return (
-    <div className="popup-container">
-      <div className="popup center flex-col gap-4 p-10">
+    <div className="popup-overlay">
+      <div className="popup center flex-col gap-4 p-10 w-1/4">
         <FontAwesomeIcon
           icon={faCircleCheck}
-          className="text-blue-500 text-9xl"
+          className="text-blue-500 text-8xl"
         />
 
         <h1 className="text-3xl font-semibold mb-4">결제를 완료했어요</h1>
