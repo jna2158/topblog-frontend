@@ -6,6 +6,12 @@ module.exports = {
       colors: {
         primary: "#3DFF66",
       },
+      fontFamily: {
+        roboto: ["Roboto", "sans-serif"],
+        dongle: ["Dongle", "sans-serif"],
+        jua: ["Jua", "sans-serif"],
+        nanumGothic: ["Nanum Gothic", "sans-serif"],
+      },
     },
   },
   plugins: [],

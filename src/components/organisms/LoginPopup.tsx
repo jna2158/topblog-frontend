@@ -3,6 +3,9 @@ import Logo from "../atoms/Logo";
 import Button from "../atoms/Button";
 import { useState } from "react";
 import useUserStore from "../../store/useUserStore";
+import { authService } from "../../service/AuthService";
+import Xmark from "../atoms/Xmark";
+import useBlockScroll from "../../hooks/useBlockScroll";
 
 export default function LoginPopup({
   setIsOpen,
@@ -13,19 +16,19 @@ export default function LoginPopup({
   const [password, setPassword] = useState("");
   const [error, setError] = useState({ type: "", message: "" });
   const { setUser } = useUserStore();
+  useBlockScroll();
 
   // 로그인하기
-  const handleClick = () => {
+  const handleClick = async () => {
     if (id === "") {
       setError({ type: "id", message: "아이디를 입력해주세요." });
     } else if (password === "") {
       setError({ type: "password", message: "비밀번호를 입력해주세요." });
     }
+
     try {
-      setUser({
-        id: id,
-        name: "재영",
-      });
+      const res = await authService.login(id, password);
+      setUser(res.data.user);
       setIsOpen(false);
     } catch (error) {
       setError({
@@ -37,7 +40,9 @@ export default function LoginPopup({
 
   return (
     <div className="popup-overlay">
-      <div className="popup w-1/3">
+      <div className="absolute popup w-1/4">
+        <Xmark setIsOpen={setIsOpen} />
+
         <section className="center mb-3">
           <Logo />
         </section>

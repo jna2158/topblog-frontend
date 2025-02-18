@@ -1,5 +1,8 @@
 import React from "react";
 import usePaymentStore from "../../store/usePaymentStore";
+import Button from "../../components/atoms/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
 export default function Success() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -15,14 +18,18 @@ export default function Success() {
 
   return (
     <div className="popup-container">
-      <div className="popup">
-        <h1 className="text-3xl font-bold mb-4">결제를 완료했어요!</h1>
-        <p className="text-lg mb-2">결제 키: {paymentKey}</p>
-        <p className="text-lg mb-2">주문 ID: {orderId}</p>
-        <p className="text-lg">결제 금액: {amount}원</p>
-        <button className="button" onClick={handleClickConfirmBtn}>
-          확인
-        </button>
+      <div className="popup center flex-col gap-4 p-10">
+        <FontAwesomeIcon
+          icon={faCircleCheck}
+          className="text-blue-500 text-9xl"
+        />
+
+        <h1 className="text-3xl font-semibold mb-4">결제를 완료했어요</h1>
+        <Button
+          label="확인"
+          onClick={handleClickConfirmBtn}
+          className="w-full bg-blue-400"
+        />
       </div>
     </div>
   );
