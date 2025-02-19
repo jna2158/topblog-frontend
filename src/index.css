@@ -16,10 +16,10 @@
     @apply w-[80%] p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary;
   }
   .card {
-    @apply w-[25%] center flex flex-col gap-5 hover:scale-105 transition-all duration-500;
+    @apply w-[20%] center flex flex-col gap-5 hover:scale-105 transition-all duration-500;
   }
   .card-image {
-    @apply w-full object-cover shadow-xl rounded-3xl;
+    @apply w-full object-cover shadow-[4px_4px_5px_rgba(0,0,0,0.1)] rounded-[35px];
   }
 }
 

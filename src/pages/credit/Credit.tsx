@@ -9,14 +9,24 @@ import usePaymentStore from "../../store/usePaymentStore";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import useUserStore from "../../store/useUserStore";
+import LoginPopup from "../../components/organisms/LoginPopup";
 
 export default function Credit() {
   const navigate = useNavigate();
   const [isCreditForUsePopupOpen, setIsCreditForUsePopupOpen] = useState(false);
   const { creditModal, setCreditModalOpen } = useModalStore();
-
-  const { setProModalOpen } = useModalStore();
+  const { user } = useUserStore();
   const { setStatus } = usePaymentStore();
+  const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
+
+  const handleClickBtn = (amount: string) => {
+    if (!user) {
+      setIsLoginPopupOpen(true);
+    } else {
+      setCreditModalOpen(true, amount);
+    }
+  };
 
   // URL 파라미터에 따라 모달 열기 및 상태 설정
   useEffect(() => {
@@ -39,7 +49,6 @@ export default function Credit() {
           break;
       }
     };
-
     handleModal("success", setCreditModalOpen);
   }, [setCreditModalOpen, setStatus]);
 
@@ -49,33 +58,33 @@ export default function Credit() {
         <section className="card flex flex-col gap-4">
           <PaymentCard
             image="/images/credit/credit1.png"
-            buttonLabel="크레딧 충전하기"
-            onClick={() => setCreditModalOpen(true, "10000")}
+            buttonLabel="크레딧 구매하기"
+            onClick={() => handleClickBtn("10000")}
           />
         </section>
         <section className="card flex flex-col gap-4">
           <PaymentCard
             image="/images/credit/credit2.png"
-            buttonLabel="크레딧 충전하기"
-            onClick={() => setCreditModalOpen(true, "30000")}
+            buttonLabel="크레딧 구매하기"
+            onClick={() => handleClickBtn("30000")}
           />
         </section>
         <section className="card flex flex-col gap-4">
           <PaymentCard
             image="/images/credit/credit3.png"
-            buttonLabel="크레딧 충전하기"
-            onClick={() => setCreditModalOpen(true, "100000")}
+            buttonLabel="크레딧 구매하기"
+            onClick={() => handleClickBtn("100000")}
           />
         </section>
       </div>
 
-      <div className="flex justify-between gap-5 px-[9vw]">
+      <div className="flex justify-between gap-5 px-[16vw]">
         <p className="text-gray-500">* 위 상품의 최대 이용기간은 1년입니다.</p>
         <p
           className="text-blue-500 font-semibold flex items-center gap-1 cursor-pointer"
           onClick={() => navigate("/credit/refund-policy")}
         >
-          환불정책 이용안내
+          환불정책 안내
           <FontAwesomeIcon icon={faChevronRight} />
         </p>
       </div>
@@ -85,6 +94,7 @@ export default function Credit() {
       )}
 
       {creditModal.isOpen && <CreditPaymentPopup />}
+      {isLoginPopupOpen && <LoginPopup setIsOpen={setIsLoginPopupOpen} />}
     </>
   );
 }

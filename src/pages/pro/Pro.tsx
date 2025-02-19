@@ -7,11 +7,24 @@ import useModalStore from "../../store/useModalStore";
 import { useEffect } from "react";
 import usePaymentStore from "../../store/usePaymentStore";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import useUserStore from "../../store/useUserStore";
+import { useState } from "react";
+import LoginPopup from "../../components/organisms/LoginPopup";
 
 export default function Pro() {
   const navigate = useNavigate();
   const { setProModalOpen, proModal } = useModalStore();
   const { setStatus } = usePaymentStore();
+  const { user } = useUserStore();
+  const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
+
+  const handleClickBtn = (amount: number) => {
+    if (!user) {
+      setIsLoginPopupOpen(true);
+    } else {
+      setProModalOpen(true, amount);
+    }
+  };
 
   // URL 파라미터에 따라 모달 열기 및 상태 설정
   useEffect(() => {
@@ -45,7 +58,7 @@ export default function Pro() {
           <PaymentCard
             image="/images/pro/pro1.png"
             buttonLabel="프로버전 구매하기"
-            onClick={() => setProModalOpen(true, 19900)}
+            onClick={() => handleClickBtn(19900)}
           />
         </section>
         <section className="card flex flex-col gap-4">
@@ -53,7 +66,7 @@ export default function Pro() {
           <PaymentCard
             image="/images/pro/pro2.png"
             buttonLabel="프로버전 구매하기"
-            onClick={() => setProModalOpen(true, 52000)}
+            onClick={() => handleClickBtn(52000)}
           />
         </section>
         <section className="card flex flex-col gap-4">
@@ -61,20 +74,21 @@ export default function Pro() {
           <PaymentCard
             image="/images/pro/pro3.png"
             buttonLabel="프로버전 구매하기"
-            onClick={() => setProModalOpen(true, 171000)}
+            onClick={() => handleClickBtn(171000)}
           />
         </section>
       </div>
 
       <p
-        className="text-blue-500 font-semibold flex items-center gap-1 cursor-pointer px-[9vw]"
+        className="text-blue-500 font-semibold flex items-center gap-1 cursor-pointer px-[16vw]"
         onClick={() => navigate("/pro/refund-policy")}
       >
-        환불정책 이용안내
+        환불정책 안내
         <FontAwesomeIcon icon={faChevronRight} />
       </p>
 
       {proModal.isOpen && <ProPaymentPopup />}
+      {isLoginPopupOpen && <LoginPopup setIsOpen={setIsLoginPopupOpen} />}
     </>
   );
 }

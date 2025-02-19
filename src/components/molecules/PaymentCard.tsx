@@ -12,12 +12,16 @@ export default function PaymentCard({
 }) {
   return (
     <div className="flex flex-col gap-5">
-      <img src={image} alt="credit" className="card-image object-cover" />
+      <img src={image} alt="credit" className="card-image" />
       <Button
         label={buttonLabel}
         onClick={onClick}
-        className={`w-full bg-[#e9e6e6] text-gray-600 text-2xl h-[4rem] ${
-          image.includes("credit2") ? "bg-[#f3f3b0]" : ""
+        className={`shadow-md w-full bg-[#e9e6e6] text-gray-600 text-2xl h-[3.7rem] ${
+          image.includes("credit2")
+            ? "bg-[#ffffd0]"
+            : image.includes("pro2")
+            ? "bg-[#e7ffdf]"
+            : ""
         }`}
       />
     </div>

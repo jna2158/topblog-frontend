@@ -22,15 +22,11 @@ export default function PaymentDropdownButton() {
         className="bg-white text-gray-600"
       />
       {isDropdownVisible && (
-        <div className="dropdown">
+        <div className="dropdown w-[150px]">
           <div
             className="p-2 hover:bg-gray-100 cursor-pointer"
             onClick={() => {
-              if (!user) {
-                setIsLoginPopupOpen(true);
-              } else {
-                navigate("/credit");
-              }
+              navigate("/credit");
             }}
           >
             크레딧 구매
@@ -38,18 +34,13 @@ export default function PaymentDropdownButton() {
           <div
             className="p-2 hover:bg-gray-100 cursor-pointer"
             onClick={() => {
-              if (!user) {
-                setIsLoginPopupOpen(true);
-              } else {
-                navigate("/pro");
-              }
+              navigate("/pro");
             }}
           >
             프로버전 구매
           </div>
         </div>
       )}
-      {isLoginPopupOpen && <LoginPopup setIsOpen={setIsLoginPopupOpen} />}
     </span>
   );
 }

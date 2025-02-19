@@ -2,17 +2,17 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-50">
-      <div className="center mx-auto h-[20vh] flex-col">
-        <p className="text-gray-500 text-[15px] text-center">
-          틴터뷰 | 서울특별시 영등포구 영등포로47길 16, 루브르하우스 704호 |
-          대표 : 조재영 | 개인정보관리책임자 : 조재영 | 사업자등록번호 :
+    <footer className="border-t border-gray-200 p-3 mt-5 bg-white">
+      <div className="center mx-auto flex-col">
+        <p className="text-gray-500 text-[13px] text-center">
+          상호명 : 틴터뷰 | 사업장 주소 : 서울특별시 영등포구 영등포로47길 16, 루브르하우스 704호 |
+          대표자명 : 조재영 | 개인정보관리책임자 : 조재영 | 사업자등록번호 :
           172-02-03375
           <br />
           유선번호 : 010-2847-9981 | 호스팅 사업자 : Amazon Web Service(AWS)
         </p>
         <br />
-        <p className="text-gray-400 text-sm text-center">
+        <p className="text-gray-400 text-[12px] text-center">
           저희 틴터뷰(TInterview) 는 네이버 블로그 자동 포스팅 프로그램의 판매
           프로그램을 운영하고 있으며, 거래의 당사자는 판매자(저희)임을
           알려드립니다.

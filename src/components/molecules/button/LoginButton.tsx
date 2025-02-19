@@ -4,6 +4,8 @@ import LoginPopup from "../../organisms/LoginPopup";
 import useUserStore from "../../../store/useUserStore";
 import LogoutButton from "./LogoutButton";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 export default function LoginButton() {
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
@@ -23,7 +25,11 @@ export default function LoginButton() {
             label={user.name + "님"}
             onClick={() => {}}
             fontSize="1.3rem"
-            className="text-gray-600 bg-white border border-gray-400 rounded-full px-4 py-2"
+            className="text-gray-700 font-semibold bg-white"
+          />
+          <FontAwesomeIcon
+            icon={faChevronDown}
+            className="absolute text-lg right-0 top-[-2px]"
           />
           {isDropdownVisible && (
             <div className="dropdown w-40">
@@ -42,7 +48,7 @@ export default function LoginButton() {
           label="로그인"
           onClick={() => setIsLoginPopupOpen(true)}
           fontSize="1.3rem"
-          className="text-gray-600"
+          className="text-gray-600 bg-[#C5FFAE] ml-10"
         />
       )}
       {isLoginPopupOpen && <LoginPopup setIsOpen={setIsLoginPopupOpen} />}

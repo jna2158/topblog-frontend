@@ -11,21 +11,27 @@ import Footer from "./components/organisms/Footer";
 
 function App() {
   return (
-    <Router>
-      <GlobalNavigationBar />
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/success" element={<Home />} />
-        <Route path="/fail" element={<Home />} />
-        <Route path="/credit" element={<Credit />} />
-        <Route path="/pro" element={<Pro />} />
-        <Route path="/payment-history" element={<PaymentHistory />} />
-        <Route path="/pro/refund-policy" element={<ProRefundPolicy />} />
-        <Route path="/credit/refund-policy" element={<CreditRefundPolicy />} />
-      </Routes>
-      <Footer />
-    </Router>
+    <div className="flex flex-col min-h-screen">
+      <Router>
+        <GlobalNavigationBar />
+        <div className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/success" element={<Home />} />
+            <Route path="/fail" element={<Home />} />
+            <Route path="/credit" element={<Credit />} />
+            <Route path="/pro" element={<Pro />} />
+            <Route path="/payment-history" element={<PaymentHistory />} />
+            <Route path="/pro/refund-policy" element={<ProRefundPolicy />} />
+            <Route
+              path="/credit/refund-policy"
+              element={<CreditRefundPolicy />}
+            />
+          </Routes>
+        </div>
+        <Footer />
+      </Router>
+    </div>
   );
 }
 

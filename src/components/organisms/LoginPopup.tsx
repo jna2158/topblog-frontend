@@ -22,8 +22,10 @@ export default function LoginPopup({
   const handleClick = async () => {
     if (id === "") {
       setError({ type: "id", message: "아이디를 입력해주세요." });
+      return;
     } else if (password === "") {
       setError({ type: "password", message: "비밀번호를 입력해주세요." });
+      return;
     }
 
     try {
@@ -46,6 +48,10 @@ export default function LoginPopup({
         <section className="center mb-3">
           <Logo />
         </section>
+
+        <p className="text-center text-green-900 m-4 text-sm">
+          * 회원가입은 프로그램에서 진행해주세요
+        </p>
 
         <form
           className="space-y-2 flex-col gap-3 center"
