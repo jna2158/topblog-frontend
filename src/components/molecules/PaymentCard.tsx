@@ -20,7 +20,7 @@ export default function PaymentCard({
           image.includes("credit2")
             ? "bg-[#ffffd0]"
             : image.includes("pro2")
-            ? "bg-[#e7ffdf]"
+            ? "bg-[#EEFEE7]"
             : ""
         }`}
       />

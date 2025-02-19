@@ -25,7 +25,7 @@ export default function CardList() {
 
   return (
     <section className="relative mt-12">
-      <Slider {...settings} className="w-full">
+      <Slider {...settings} className="">
         <Card name="credit-banner" onClick={() => {}} />
         <Card name="kakao-banner" onClick={handleKakaoClick} />
         <Card name="premium-banner" onClick={() => {}} />
