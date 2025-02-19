@@ -1,6 +1,5 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import CreditForUsePopup from "../../components/organisms/CreditForUsePopup";
 import PaymentCard from "../../components/molecules/PaymentCard";
@@ -9,6 +8,7 @@ import CreditPaymentPopup from "../../components/organisms/CreditPaymentPopup";
 import usePaymentStore from "../../store/usePaymentStore";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 export default function Credit() {
   const navigate = useNavigate();
@@ -69,21 +69,14 @@ export default function Credit() {
         </section>
       </div>
 
-      <div className="flex flex-col gap-5 pl-[9vw]">
+      <div className="flex justify-between gap-5 px-[9vw]">
+        <p className="text-gray-500">* 위 상품의 최대 이용기간은 1년입니다.</p>
         <p
-          className="text-gray-700 flex items-center gap-1 cursor-pointer"
+          className="text-blue-500 font-semibold flex items-center gap-1 cursor-pointer"
           onClick={() => navigate("/credit/refund-policy")}
         >
-          <FontAwesomeIcon icon={faCircleCheck} className="text-green-500" />
           환불정책 이용안내
-        </p>
-
-        <p
-          className="text-gray-700 flex items-center gap-1 cursor-pointer"
-          onClick={() => setIsCreditForUsePopupOpen(true)}
-        >
-          <FontAwesomeIcon icon={faCircleCheck} className="text-green-500" />
-          크레딧 이용안내
+          <FontAwesomeIcon icon={faChevronRight} />
         </p>
       </div>
 

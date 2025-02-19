@@ -7,6 +7,7 @@ import GlobalNavigationBar from "./components/organisms/GlobalNavigationBar";
 import PaymentHistory from "./pages/PaymentHistory";
 import ProRefundPolicy from "./pages/pro/ProRefundPolicy";
 import CreditRefundPolicy from "./pages/credit/CreditRefundPolicy";
+import Footer from "./components/organisms/Footer";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/pro/refund-policy" element={<ProRefundPolicy />} />
         <Route path="/credit/refund-policy" element={<CreditRefundPolicy />} />
       </Routes>
+      <Footer />
     </Router>
   );
 }

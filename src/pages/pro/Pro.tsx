@@ -1,12 +1,12 @@
 import React from "react";
 import PaymentCard from "../../components/molecules/PaymentCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import ProPaymentPopup from "../../components/organisms/ProPaymentPopup";
 import { useNavigate } from "react-router-dom";
 import useModalStore from "../../store/useModalStore";
 import { useEffect } from "react";
 import usePaymentStore from "../../store/usePaymentStore";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 export default function Pro() {
   const navigate = useNavigate();
@@ -67,11 +67,11 @@ export default function Pro() {
       </div>
 
       <p
-        className="text-gray-700 flex items-center gap-1 cursor-pointer pl-[9vw]"
+        className="text-blue-500 font-semibold flex items-center gap-1 cursor-pointer px-[9vw]"
         onClick={() => navigate("/pro/refund-policy")}
       >
-        <FontAwesomeIcon icon={faCircleCheck} className="text-green-500" />
-        환불정책 확인하기
+        환불정책 이용안내
+        <FontAwesomeIcon icon={faChevronRight} />
       </p>
 
       {proModal.isOpen && <ProPaymentPopup />}
