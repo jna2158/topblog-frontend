@@ -8,19 +8,20 @@ interface BackgroundImageProps {
 
 const BackgroundImage: React.FC<BackgroundImageProps> = ({ src, alt }) => {
   const imageStyle = {
-    width: "100%",
-    maxWidth: "1000px",
+    width: "150%",
+    maxWidth: "none",
     margin: "0 auto",
+    display: "block",
   };
   const relativeStyle: CSSProperties = {
     position: "relative",
     width: "100%",
     margin: "0 auto",
-    maxWidth: "1000px",
+    maxWidth: "1150px",
   };
 
   return (
-    <div style={relativeStyle}>
+    <div style={relativeStyle} className="center">
       <img src={src} alt={alt} style={imageStyle} />
     </div>
   );

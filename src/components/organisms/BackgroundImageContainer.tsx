@@ -6,7 +6,7 @@ export default function BackgroundImageContainer() {
     position: "relative",
     width: "100%",
     margin: "0 auto",
-    maxWidth: "1000px",
+    maxWidth: "1150px",
   };
 
   return (
@@ -40,6 +40,7 @@ export default function BackgroundImageContainer() {
           style={{ width: "100%" }}
         />
       </div>
+
       {[
         "/images/background/10.gif",
         "/images/background/11.gif",
