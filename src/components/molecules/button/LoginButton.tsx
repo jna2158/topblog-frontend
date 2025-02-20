@@ -13,6 +13,12 @@ export default function LoginButton() {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
   const navigate = useNavigate();
 
+  // 로그인 버튼 클릭 시 로그인 팝업 열림
+  const handleClickLoginButton = () => {
+    setIsLoginPopupOpen(true);
+    setDropdownVisible(false);
+  };
+
   return (
     <>
       {user ? (
@@ -35,7 +41,11 @@ export default function LoginButton() {
             <div className="dropdown w-40">
               <div
                 className="p-2 hover:bg-gray-100 cursor-pointer"
-                onClick={() => navigate("/payment-history")}
+                onClick={(event) => {
+                  setDropdownVisible(false);
+                  navigate("/payment-history");
+                  event.stopPropagation();
+                }}
               >
                 결제 내역
               </div>
@@ -46,7 +56,7 @@ export default function LoginButton() {
       ) : (
         <Button
           label="로그인"
-          onClick={() => setIsLoginPopupOpen(true)}
+          onClick={handleClickLoginButton}
           fontSize="1.3rem"
           className="text-gray-600 bg-[#C5FFAE] ml-10"
         />

@@ -22,13 +22,21 @@ export default function PaymentDropdownButton() {
         <div className="dropdown w-[180px]">
           <div
             className="p-2 hover:bg-gray-100 cursor-pointer"
-            onClick={() => downloadProgram("Windows")}
+            onClick={(event) => {
+              setDropdownVisible(false);
+              downloadProgram("Windows");
+              event.stopPropagation();
+            }}
           >
             Windows 다운로드
           </div>
           <div
             className="p-2 hover:bg-gray-100 cursor-pointer"
-            onClick={() => downloadProgram("Mac")}
+            onClick={(event) => {
+              setDropdownVisible(false);
+              downloadProgram("Mac");
+              event.stopPropagation();
+            }}
           >
             Mac 다운로드
           </div>

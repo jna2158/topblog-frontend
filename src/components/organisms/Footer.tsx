@@ -5,11 +5,11 @@ export default function Footer() {
     <footer className="border-t border-gray-200 p-3 mt-5 bg-white">
       <div className="center mx-auto flex-col">
         <p className="text-gray-500 text-[13px] text-center">
-          상호명 : 틴터뷰 | 사업장 주소 : 서울특별시 영등포구 영등포로47길 16, 루브르하우스 704호 |
-          대표자명 : 조재영 | 개인정보관리책임자 : 조재영 | 사업자등록번호 :
-          172-02-03375
+          상호명 : 틴터뷰 | 사업장 주소 : 서울특별시 영등포구 영등포로47길 16,
+          루브르하우스 704호 | 대표자명 : 조재영 | 개인정보관리책임자 : 조재영 |
+          사업자등록번호 : 172-02-03375
           <br />
-          유선번호 : 010-2847-9981 | 호스팅 사업자 : Amazon Web Service(AWS)
+          유선번호 : 010-6387-9981 | 호스팅 사업자 : Amazon Web Service(AWS)
         </p>
         <br />
         <p className="text-gray-400 text-[12px] text-center">
@@ -28,7 +28,7 @@ export default function Footer() {
         </p>
         <br />
         <p className="text-gray-300 text-sm text-center">
-          Copyright © 2025 kmong Inc. All rights reserved.
+          Copyright © 2025 TInterview Inc. All rights reserved.
         </p>
       </div>
     </footer>

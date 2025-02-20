@@ -11,7 +11,7 @@ export default function PaymentCard({
   onClick: () => void;
 }) {
   return (
-    <div className="flex flex-col gap-5">
+    <>
       <img src={image} alt="credit" className="card-image" />
       <Button
         label={buttonLabel}
@@ -24,6 +24,6 @@ export default function PaymentCard({
             : ""
         }`}
       />
-    </div>
+    </>
   );
 }

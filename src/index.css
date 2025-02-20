@@ -19,7 +19,7 @@
     @apply w-[20%] center flex flex-col gap-5 hover:scale-105 transition-all duration-500;
   }
   .card-image {
-    @apply w-full object-cover shadow-[4px_4px_5px_rgba(0,0,0,0.1)] rounded-[35px];
+    @apply w-full object-cover shadow-[4px_4px_5px_rgba(0,0,0,0.1)] rounded-[10%] bg-transparent;
   }
 }
 
