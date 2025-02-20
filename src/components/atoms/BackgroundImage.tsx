@@ -17,7 +17,7 @@ const BackgroundImage: React.FC<BackgroundImageProps> = ({ src, alt }) => {
     position: "relative",
     width: "100%",
     margin: "0 auto",
-    maxWidth: "1150px",
+    maxWidth: "70%",
   };
 
   return (
