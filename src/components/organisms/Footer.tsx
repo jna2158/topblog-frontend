@@ -1,6 +1,17 @@
 import React from "react";
+import Button from "../atoms/Button";
+import { useNavigate } from "react-router-dom";
+import useScrollUp from "../../hooks/useScrollUp";
+import { useEffect } from "react";
 
 export default function Footer() {
+  const navigate = useNavigate();
+  const scrollUp = useScrollUp();
+
+  useEffect(() => {
+    scrollUp();
+  }, [navigate]);
+
   return (
     <footer className="border-t border-gray-200 p-3 mt-5 bg-white">
       <div className="center mx-auto flex-col">
@@ -10,6 +21,11 @@ export default function Footer() {
           사업자등록번호 : 172-02-03375
           <br />
           유선번호 : 010-6387-9981 | 호스팅 사업자 : Amazon Web Service(AWS)
+          <Button
+            label="개인정보처리방침"
+            className="bg-transparent text-gray-500 hover:bg-gray-100 font-semibold border py-1 px-2 text-[12px] rounded-md ml-1"
+            onClick={() => navigate("/privacy-policy")}
+          />
         </p>
         <br />
         <p className="text-gray-400 text-[12px] text-center">

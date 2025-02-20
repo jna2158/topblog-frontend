@@ -34,3 +34,42 @@
     @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50;
   }
 }
+
+.slick-slider {
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.slick-prev {
+  position: absolute;
+  top: 50%;
+  left: calc(25% - 20px) !important;
+  z-index: 1;
+  margin: 10px;
+  margin-top: 0%;
+  transform: translateY(-50%);
+}
+.slick-next {
+  position: absolute;
+  top: 50%;
+  right: calc(25% - -1px) !important;
+  z-index: 1;
+  margin-top: 0%;
+  transform: translateY(-50%);
+}
+
+.slick-prev::before,
+.slick-next::before {
+  font-size: 34px !important;
+  color: #333 !important;
+  opacity: 0.8;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.slick-prev:hover::before,
+.slick-next:hover::before {
+  color: #000 !important;
+  opacity: 1;
+}

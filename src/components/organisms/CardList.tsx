@@ -11,12 +11,10 @@ export default function CardList() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    // arrows: true,
+    arrows: true,
     autoplaySpeed: 5000,
     centerMode: true,
     centerPadding: "25%",
-    // nextArrow: <div className="slick-next">→</div>,
-    // prevArrow: <div className="slick-prev custom-prev">←</div>,
   };
 
   const handleKakaoClick = () => {
@@ -24,8 +22,8 @@ export default function CardList() {
   };
 
   return (
-    <section className="relative mt-12">
-      <Slider {...settings} className="">
+    <section className="mt-12">
+      <Slider {...settings}>
         <Card name="credit-banner" onClick={() => {}} />
         <Card name="kakao-banner" onClick={handleKakaoClick} />
         <Card name="premium-banner" onClick={() => {}} />

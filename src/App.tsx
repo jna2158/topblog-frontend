@@ -8,6 +8,7 @@ import PaymentHistory from "./pages/PaymentHistory";
 import ProRefundPolicy from "./pages/pro/ProRefundPolicy";
 import CreditRefundPolicy from "./pages/credit/CreditRefundPolicy";
 import Footer from "./components/organisms/Footer";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/fail" element={<Home />} />
             <Route path="/credit" element={<Credit />} />
             <Route path="/pro" element={<Pro />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/payment-history" element={<PaymentHistory />} />
             <Route path="/pro/refund-policy" element={<ProRefundPolicy />} />
             <Route

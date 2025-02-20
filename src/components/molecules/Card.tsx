@@ -7,7 +7,7 @@ interface CardProps {
 
 export default function Card({ name, onClick }: CardProps) {
   return (
-    <div className="px-4">
+    <div className="mx-8 center">
       <img
         src={`/images/banner/${name}.png`}
         alt="credit-banner"
