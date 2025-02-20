@@ -54,7 +54,7 @@
 .slick-next {
   position: absolute;
   top: 50%;
-  right: calc(25% - -1px) !important;
+  right: calc(25% - (-1px)) !important;
   z-index: 1;
   margin-top: 0%;
   transform: translateY(-50%);
@@ -63,13 +63,12 @@
 .slick-prev::before,
 .slick-next::before {
   font-size: 34px !important;
-  color: #333 !important;
-  opacity: 0.8;
-  transition: color 0.3s ease, opacity 0.3s ease;
+  color: rgb(124, 124, 124, 0.4) !important;
+  opacity: 0.4 !important;
 }
 
 .slick-prev:hover::before,
 .slick-next:hover::before {
-  color: #000 !important;
-  opacity: 1;
+  color: rgb(124, 124, 124, 0.7) !important;
+  opacity: 0.7 !important;
 }

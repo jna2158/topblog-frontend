@@ -23,7 +23,7 @@ export default function Footer() {
           유선번호 : 010-6387-9981 | 호스팅 사업자 : Amazon Web Service(AWS)
           <Button
             label="개인정보처리방침"
-            className="bg-transparent text-gray-500 hover:bg-gray-100 font-semibold border py-1 px-2 text-[12px] rounded-md ml-1"
+            className="bg-transparent text-gray-500 hover:bg-gray-100 font-semibold border py-1 px-2 mt-1 text-[12px] rounded-md ml-1"
             onClick={() => navigate("/privacy-policy")}
           />
         </p>
