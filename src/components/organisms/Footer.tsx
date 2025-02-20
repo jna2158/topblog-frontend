@@ -20,10 +20,10 @@ export default function Footer() {
           루브르하우스 704호 | 대표자명 : 조재영 | 개인정보관리책임자 : 조재영 |
           사업자등록번호 : 172-02-03375
           <br />
-          유선번호 : 010-6387-9981 | 호스팅 사업자 : Amazon Web Service(AWS)
+          유선번호 : 010-6387-9981 | 호스팅 사업자 : Amazon Web Service(AWS) |
           <Button
             label="개인정보처리방침"
-            className="bg-transparent text-gray-500 hover:bg-gray-100 font-semibold border py-1 px-2 mt-1 text-[12px] rounded-md ml-1"
+            className="bg-transparent text-gray-500 hover:bg-gray-100 font-semibold border py-1 px-2 mt-1 text-[12px] rounded-md ml-2"
             onClick={() => navigate("/privacy-policy")}
           />
         </p>
