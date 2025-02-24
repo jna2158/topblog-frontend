@@ -3,6 +3,8 @@ import usePaymentStore from "../../store/usePaymentStore";
 import Button from "../../components/atoms/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import { paymentService } from "../../service/PaymentService";
+import { useEffect } from "react";
 
 export default function Success() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -25,7 +27,9 @@ export default function Success() {
         />
 
         <h1 className="text-3xl font-semibold mb-4">결제를 완료했어요</h1>
-        <p className="text-sm text-gray-500">결제 내역은 결제/환불 내역 페이지를 통해 확인할 수 있어요</p>
+        <p className="text-sm text-gray-500">
+          결제 내역은 결제/환불 내역 페이지를 통해 확인할 수 있어요
+        </p>
         <Button
           label="확인"
           onClick={handleClickConfirmBtn}

@@ -31,6 +31,8 @@ export default function LoginPopup({
     try {
       const res = await authService.login(id, password);
       setUser(res.data.user);
+      localStorage.setItem("access", res.data.tokens.access_token);
+      localStorage.setItem("refresh", res.data.tokens.refresh_token);
       setIsOpen(false);
     } catch (error) {
       setError({
@@ -42,7 +44,7 @@ export default function LoginPopup({
 
   return (
     <div className="popup-overlay">
-      <div className="absolute popup w-1/4">
+      <div className="absolute popup w-full pt-[50%] h-screen md:w-1/4 md:h-auto md:pt-2">
         <Xmark setIsOpen={setIsOpen} />
 
         <section className="center mb-3">

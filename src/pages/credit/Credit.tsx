@@ -54,22 +54,22 @@ export default function Credit() {
 
   return (
     <>
-      <div className="center p-10 gap-24">
-        <section className="card flex flex-col gap-4">
+      <div className="flex flex-col md:flex-row justify-center items-center p-4 md:p-10 gap-6 md:gap-24">
+        <section className="card flex flex-col gap-4 w-[50%] md:w-1/5">
           <PaymentCard
             image="/images/credit/credit1.png"
             buttonLabel="크레딧 구매하기"
             onClick={() => handleClickBtn("10000")}
           />
         </section>
-        <section className="card flex flex-col gap-4">
+        <section className="card flex flex-col gap-4 w-[50%] md:w-1/5">
           <PaymentCard
             image="/images/credit/credit2.png"
             buttonLabel="크레딧 구매하기"
             onClick={() => handleClickBtn("30000")}
           />
         </section>
-        <section className="card flex flex-col gap-4">
+        <section className="card flex flex-col gap-4 w-[50%] md:w-1/5">
           <PaymentCard
             image="/images/credit/credit3.png"
             buttonLabel="크레딧 구매하기"
@@ -78,8 +78,10 @@ export default function Credit() {
         </section>
       </div>
 
-      <div className="flex justify-between gap-5 px-[16vw]">
-        <p className="text-gray-500">* 위 상품의 최대 이용기간은 1년입니다.</p>
+      <div className="flex flex-col md:flex-row justify-between items-center gap-2 md:gap-5 px-4 md:px-[16vw]">
+        <p className="text-gray-500 text-center md:text-left">
+          * 위 상품의 최대 이용기간은 1년입니다.
+        </p>
         <p
           className="text-blue-500 font-semibold flex items-center gap-1 cursor-pointer"
           onClick={() => navigate("/credit/refund-policy")}

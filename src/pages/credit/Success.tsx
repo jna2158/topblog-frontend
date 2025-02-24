@@ -3,6 +3,8 @@ import usePaymentStore from "../../store/usePaymentStore";
 import Button from "../../components/atoms/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import { paymentService } from "../../service/PaymentService";
+import { useEffect } from "react";
 
 export default function Success() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -10,6 +12,13 @@ export default function Success() {
   const orderId = urlParams.get("orderId");
   const amount = urlParams.get("amount");
   const { setStatus } = usePaymentStore();
+
+  // 결제 승인 요청
+  useEffect(() => {
+    if (!paymentKey || !orderId || !amount) return;
+    const res = paymentService.payment(paymentKey, orderId, Number(amount));
+    console.log("결제 승인 요청 결과:", res);
+  }, [amount, orderId, paymentKey]);
 
   const handleClickConfirmBtn = () => {
     setStatus("pending");
