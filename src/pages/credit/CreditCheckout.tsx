@@ -15,7 +15,7 @@ export default function CreditCheckout() {
             setWidgets={setWidgets}
             amount={creditModal.data}
           />
-          <CreditPaymentButton widgets={widgets} />
+          <CreditPaymentButton widgets={widgets} amount={creditModal.data} />
         </div>
       </div>
     </>

@@ -1,9 +1,22 @@
 import React from "react";
 import Button from "../../atoms/Button";
 import useUserStore from "../../../store/useUserStore";
+import { v4 as uuidv4 } from "uuid";
 
-export default function CreditPaymentButton({ widgets }: { widgets: any }) {
+export default function CreditPaymentButton({
+  widgets,
+  amount,
+}: {
+  widgets: any;
+  amount: number;
+}) {
   const { user } = useUserStore();
+
+  const creditToAmount: { [key: number]: number } = {
+    10800: 10000,
+    28800: 30000,
+    84000: 100000,
+  };
 
   const handleClickPaymentBtn = async () => {
     if (!widgets) return;
@@ -11,10 +24,20 @@ export default function CreditPaymentButton({ widgets }: { widgets: any }) {
 
     try {
       await widgets.requestPayment({
-        orderId: "Z8FY0cyOVhKYDFZNlj1iI",
+        orderId: uuidv4(),
         orderName: "크레딧 충전",
-        successUrl: window.location.href + "?success=true",
-        failUrl: window.location.href + "?success=false",
+        successUrl:
+          window.location.href +
+          "?success=true&credit=" +
+          creditToAmount[Number(amount)] +
+          "&amount=" +
+          amount,
+        failUrl:
+          window.location.href +
+          "?success=false&credit=" +
+          creditToAmount[Number(amount)] +
+          "&amount=" +
+          amount,
         customerEmail: user.email,
         customerName: user.name,
       });

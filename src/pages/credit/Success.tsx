@@ -11,14 +11,21 @@ export default function Success() {
   const paymentKey = urlParams.get("paymentKey");
   const orderId = urlParams.get("orderId");
   const amount = urlParams.get("amount");
+  const credit = urlParams.get("credit");
+
   const { setStatus } = usePaymentStore();
 
   // 결제 승인 요청
   useEffect(() => {
     if (!paymentKey || !orderId || !amount) return;
-    const res = paymentService.payment(paymentKey, orderId, Number(amount));
-    console.log("결제 승인 요청 결과:", res);
-  }, [amount, orderId, paymentKey]);
+
+    paymentService.creditPayment(
+      paymentKey,
+      orderId,
+      Number(amount),
+      Number(credit)
+    );
+  }, [amount, orderId, paymentKey, credit]);
 
   const handleClickConfirmBtn = () => {
     setStatus("pending");

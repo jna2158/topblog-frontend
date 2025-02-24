@@ -59,21 +59,21 @@ export default function Credit() {
           <PaymentCard
             image="/images/credit/credit1.png"
             buttonLabel="크레딧 구매하기"
-            onClick={() => handleClickBtn("10000")}
+            onClick={() => handleClickBtn("10800")}
           />
         </section>
         <section className="card flex flex-col gap-4 w-[50%] md:w-1/5">
           <PaymentCard
             image="/images/credit/credit2.png"
             buttonLabel="크레딧 구매하기"
-            onClick={() => handleClickBtn("30000")}
+            onClick={() => handleClickBtn("28800")}
           />
         </section>
         <section className="card flex flex-col gap-4 w-[50%] md:w-1/5">
           <PaymentCard
             image="/images/credit/credit3.png"
             buttonLabel="크레딧 구매하기"
-            onClick={() => handleClickBtn("100000")}
+            onClick={() => handleClickBtn("84000")}
           />
         </section>
       </div>
