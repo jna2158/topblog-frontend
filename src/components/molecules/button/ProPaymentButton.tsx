@@ -1,9 +1,22 @@
 import React from "react";
 import Button from "../../atoms/Button";
 import useUserStore from "../../../store/useUserStore";
+import { v4 as uuidv4 } from "uuid";
 
-export default function ProPaymentButton({ widgets }: { widgets: any }) {
+export default function ProPaymentButton({
+  widgets,
+  amount,
+}: {
+  widgets: any;
+  amount: number;
+}) {
   const { user } = useUserStore();
+
+  const proToDays: { [key: number]: number } = {
+    19900: 30,
+    52000: 180,
+    171000: 365,
+  };
 
   const handleClickPaymentBtn = async () => {
     if (!widgets) return;
@@ -11,10 +24,20 @@ export default function ProPaymentButton({ widgets }: { widgets: any }) {
 
     try {
       await widgets.requestPayment({
-        orderId: "Z8FY0cyOVhKYDFZNlj1iI",
+        orderId: uuidv4(),
         orderName: "Pro 버전 구매",
-        successUrl: window.location.href + "?success=true",
-        failUrl: window.location.href + "?success=false",
+        successUrl:
+          window.location.href +
+          "?success=true&days=" +
+          proToDays[Number(amount)] +
+          "&amount=" +
+          amount,
+        failUrl:
+          window.location.href +
+          "?success=false&days=" +
+          proToDays[Number(amount)] +
+          "&amount=" +
+          amount,
         customerEmail: user.email,
         customerName: user.name,
       });

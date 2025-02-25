@@ -25,4 +25,29 @@ export const paymentService = {
     );
     return response.data;
   },
+
+  // Pro 결제 처리
+  proPayment: async (
+    paymentKey: string,
+    orderId: string,
+    amount: number,
+    days: number
+  ) => {
+    const token = localStorage.getItem("access");
+    const response = await axios.post(
+      `${process.env.REACT_APP_API_URL}/payments/confirm-pro`,
+      {
+        paymentKey,
+        orderId,
+        amount,
+        days,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  },
 };

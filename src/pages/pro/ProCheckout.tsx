@@ -17,7 +17,7 @@ export default function ProCheckout() {
             setWidgets={setWidgets}
             amount={proModal.data}
           />
-          <ProPaymentButton widgets={widgets} />
+          <ProPaymentButton widgets={widgets} amount={proModal.data} />
         </div>
       </div>
     </>

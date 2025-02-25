@@ -11,11 +11,24 @@ export default function Success() {
   const paymentKey = urlParams.get("paymentKey");
   const orderId = urlParams.get("orderId");
   const amount = urlParams.get("amount");
+  const days = urlParams.get("days");
+
   const { setStatus } = usePaymentStore();
+
+  useEffect(() => {
+    if (!paymentKey || !orderId || !amount) return;
+
+    paymentService.proPayment(
+      paymentKey,
+      orderId,
+      Number(amount),
+      Number(days)
+    );
+  }, [amount, orderId, paymentKey, days]);
 
   const handleClickConfirmBtn = () => {
     setStatus("pending");
-    window.location.href = "/credit";
+    window.location.href = "/pro";
   };
 
   return (
