@@ -5,6 +5,7 @@ type User = {
   id: string;
   name: string;
   email: string;
+  staff: boolean;
 };
 
 type UserState = {

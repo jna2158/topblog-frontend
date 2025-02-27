@@ -33,6 +33,15 @@
   .popup-overlay {
     @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50;
   }
+  .table-header {
+    @apply py-4 px-6 border-b-2 border-gray-200 bg-gray-200 text-center font-semibold text-gray-700 uppercase tracking-wider;
+  }
+  .table-data {
+    @apply py-4 px-6 border-b border-gray-200 text-center;
+  }
+  .pagination-link {
+    @apply px-4 py-2 border border-gray-300 rounded-full hover:bg-gray-300 transition duration-200;
+  }
 }
 
 .slick-slider {

@@ -16,19 +16,26 @@ export default function PaymentHistory() {
   const [totalPages, setTotalPages] = useState(0);
   const itemsPerPage = 10;
   const [total, setTotal] = useState(0);
+  const [search, setSearch] = useState("");
 
   const statusMap: Record<string, string> = {
     DONE: "결제 완료",
   };
 
+  // 결제 내역 조회
+  const fetchHistory = async () => {
+    await paymentService
+      .getPaymentHistory(currentPage, search)
+      .then((res) => {
+        setHistory(res.data.results);
+        setTotalPages(Math.ceil(res.data.count / itemsPerPage));
+        setTotal(res.data.count);
+      });
+  };
+
   useEffect(() => {
     if (!user) return;
-
-    paymentService.getPaymentHistory(currentPage).then((res) => {
-      setHistory(res.data.results);
-      setTotalPages(Math.ceil(res.data.count / itemsPerPage));
-      setTotal(res.data.count);
-    });
+    fetchHistory();
   }, [user, currentPage]);
 
   return (
@@ -36,46 +43,59 @@ export default function PaymentHistory() {
       <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">
         {user?.name}님의 결제/환불 내역
       </h1>
+      {user?.staff && (
+        <input
+          type="text"
+          placeholder="검색"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              fetchHistory();
+              setCurrentPage(1);
+            }
+          }}
+          className="mb-4 p-2 border border-gray-300 rounded"
+        />
+      )}
       <p className="text-sm text-gray-600 mb-4">총 {total}건</p>
       <table className="min-w-full bg-white shadow-lg rounded-lg overflow-hidden">
         <thead>
           <tr>
-            <th className="py-4 px-6 border-b-2 border-gray-200 bg-gray-200 text-center text-md font-semibold text-gray-700 uppercase tracking-wider">
-              날짜
-            </th>
-            <th className="py-4 px-6 border-b-2 border-gray-200 bg-gray-200 text-center text-md font-semibold text-gray-700 uppercase tracking-wider">
-              유형
-            </th>
-            <th className="py-4 px-6 border-b-2 border-gray-200 bg-gray-200 text-center text-md font-semibold text-gray-700 uppercase tracking-wider">
-              금액
-            </th>
-            {/* <th className="py-4 px-6 border-b-2 border-gray-200 bg-gray-200 text-center text-md font-semibold text-gray-700 uppercase tracking-wider">
-              사용 기한
-            </th> */}
-            <th className="py-4 px-6 border-b-2 border-gray-200 bg-gray-200 text-center text-md font-semibold text-gray-700 uppercase tracking-wider">
-              상태
-            </th>
+            <th className="table-header">번호</th>
+            {user?.staff && <th className="table-header">아이디</th>}
+            <th className="table-header">주문번호</th>
+            <th className="table-header">날짜</th>
+            <th className="table-header">유형</th>
+            <th className="table-header">금액</th>
+            <th className="table-header">상태</th>
           </tr>
         </thead>
         <tbody>
-          {history?.map((item: any) => (
+          {history.map((item: any, index: number) => (
             <tr
               key={item.id}
               className="hover:bg-gray-100 transition duration-200"
             >
-              <td className="py-4 px-6 border-b border-gray-200 text-center">
+              <td className="table-data">{index + 1}</td>
+              {user?.staff && (
+                <td className="table-data">{item.user_email || "-"}</td>
+              )}
+              <td className="table-data">
+                <span className="truncate">{item.id ? `${item.id}` : "-"}</span>
+                {/* <button
+                  onClick={() => navigator.clipboard.writeText(item.id || "-")}
+                  className="ml-2 text-blue-500 hover:text-blue-700"
+                >
+                  복사
+                </button> */}
+              </td>
+              <td className="table-data">
                 {dayjs(item.approved_at).format("YYYY-MM-DD")}
               </td>
-              <td className="py-4 px-6 border-b border-gray-200 text-center">
-                {item.order_name}
-              </td>
-              <td className="py-4 px-6 border-b border-gray-200 text-center">
-                {item.amount.toLocaleString()}
-              </td>
-              {/* <td className="py-4 px-6 border-b border-gray-200 text-center">
-                {item.days}일
-              </td> */}
-              <td className="py-4 px-6 border-b border-gray-200 text-center">
+              <td className="table-data">{item.order_name}</td>
+              <td className="table-data">{item.amount.toLocaleString()}</td>
+              <td className="table-data">
                 <span
                   className={`inline-block px-3 py-1 text-sm font-semibold text-white rounded-full ${
                     item.status === "DONE" ? "bg-blue-500" : "bg-gray-500"
@@ -100,19 +120,14 @@ export default function PaymentHistory() {
           onPageChange={(selected) => setCurrentPage(selected.selected + 1)}
           containerClassName={"flex list-none p-0"}
           pageClassName={"mx-1"}
-          pageLinkClassName={
-            "px-4 py-2 border border-gray-300 rounded-full hover:bg-gray-300 transition duration-200"
-          }
+          pageLinkClassName={"pagination-link"}
           previousClassName={"mx-1"}
           nextClassName={"mx-1"}
-          previousLinkClassName={
-            "px-4 py-2 border border-gray-300 rounded-full hover:bg-gray-300 transition duration-200"
-          }
-          nextLinkClassName={
-            "px-4 py-2 border border-gray-300 rounded-full hover:bg-gray-300 transition duration-200"
-          }
+          previousLinkClassName={"pagination-link"}
+          nextLinkClassName={"pagination-link"}
           disabledClassName={"opacity-50 cursor-not-allowed"}
           activeLinkClassName={"bg-blue-500 text-white"}
+          forcePage={currentPage - 1}
         />
       </div>
     </section>
