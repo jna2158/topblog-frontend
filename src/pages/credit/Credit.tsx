@@ -3,54 +3,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import CreditForUsePopup from "../../components/organisms/CreditForUsePopup";
 import PaymentCard from "../../components/molecules/PaymentCard";
-import useModalStore from "../../store/useModalStore";
-import CreditPaymentPopup from "../../components/organisms/CreditPaymentPopup";
-import usePaymentStore from "../../store/usePaymentStore";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import useUserStore from "../../store/useUserStore";
 import LoginPopup from "../../components/organisms/LoginPopup";
 
 export default function Credit() {
   const navigate = useNavigate();
   const [isCreditForUsePopupOpen, setIsCreditForUsePopupOpen] = useState(false);
-  const { creditModal, setCreditModalOpen } = useModalStore();
-  const { user } = useUserStore();
-  const { setStatus } = usePaymentStore();
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
 
   const handleClickBtn = (amount: string) => {
-    if (!user) {
-      setIsLoginPopupOpen(true);
-    } else {
-      setCreditModalOpen(true, amount);
-    }
+    // 크레딧 구매 안내 모달 열기
   };
-
-  // URL 파라미터에 따라 모달 열기 및 상태 설정
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const handleModal = (
-      param: string,
-      setModalOpen: (open: boolean) => void
-    ) => {
-      const status = urlParams.get(param);
-      switch (status) {
-        case "true":
-          setModalOpen(true);
-          setStatus("success");
-          break;
-        case "false":
-          setModalOpen(true);
-          setStatus("fail");
-          break;
-        default:
-          break;
-      }
-    };
-    handleModal("success", setCreditModalOpen);
-  }, [setCreditModalOpen, setStatus]);
 
   return (
     <>
@@ -95,7 +59,6 @@ export default function Credit() {
         <CreditForUsePopup setIsOpen={setIsCreditForUsePopupOpen} />
       )}
 
-      {creditModal.isOpen && <CreditPaymentPopup />}
       {isLoginPopupOpen && <LoginPopup setIsOpen={setIsLoginPopupOpen} />}
     </>
   );

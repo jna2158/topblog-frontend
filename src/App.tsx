@@ -18,8 +18,6 @@ function App() {
         <div className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/success" element={<Home />} />
-            <Route path="/fail" element={<Home />} />
             <Route path="/credit" element={<Credit />} />
             <Route path="/pro" element={<Pro />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
