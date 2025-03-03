@@ -16,6 +16,7 @@ export default function Credit() {
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
   const { setCreditModalOpen, creditModal } = useModalStore();
   const [creditModalStep, setCreditModalStep] = useState(1);
+  const [depositor, setDepositor] = useState("");
 
   // 크레딧 구매 안내 모달 열기
   const handleClickBtn = (data: { amount: string; price: string }) => {
@@ -72,11 +73,12 @@ export default function Credit() {
         <CreditModalStep1
           data={creditModal.data}
           setCreditModalStep={setCreditModalStep}
+          setDepositor={setDepositor}
         />
       )}
 
       {creditModal.isOpen && creditModalStep === 2 && (
-        <CreditModalStep2 data={creditModal.data} />
+        <CreditModalStep2 data={creditModal.data} depositor={depositor} />
       )}
     </>
   );

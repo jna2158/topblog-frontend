@@ -5,13 +5,20 @@ import { useNavigate } from "react-router-dom";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import LoginPopup from "../../components/organisms/LoginPopup";
+import useModalStore from "../../store/useModalStore";
+import ProModalStep1 from "../../components/organisms/pro/ProModalStep1";
+import ProModalStep2 from "../../components/organisms/pro/ProModalStep2";
 
 export default function Pro() {
   const navigate = useNavigate();
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
+  const { setProModalOpen, proModal } = useModalStore();
+  const [proModalStep, setProModalStep] = useState(1);
+  const [depositor, setDepositor] = useState("");
 
-  const handleClickBtn = (amount: number) => {
-    // 프로버전 구매 안내 모달 열기
+  const handleClickBtn = (amount: number, day: number) => {
+    setProModalOpen(true, { day, amount });
+    setProModalStep(1);
   };
 
   return (
@@ -22,7 +29,7 @@ export default function Pro() {
           <PaymentCard
             image="/images/pro/pro1.png"
             buttonLabel="프로버전 구매하기"
-            onClick={() => handleClickBtn(19900)}
+            onClick={() => handleClickBtn(19900, 30)}
           />
         </section>
         <section className="card flex flex-col gap-4">
@@ -30,7 +37,7 @@ export default function Pro() {
           <PaymentCard
             image="/images/pro/pro2.png"
             buttonLabel="프로버전 구매하기"
-            onClick={() => handleClickBtn(52000)}
+            onClick={() => handleClickBtn(52000, 180)}
           />
         </section>
         <section className="card flex flex-col gap-4">
@@ -38,7 +45,7 @@ export default function Pro() {
           <PaymentCard
             image="/images/pro/pro3.png"
             buttonLabel="프로버전 구매하기"
-            onClick={() => handleClickBtn(171000)}
+            onClick={() => handleClickBtn(171000, 365)}
           />
         </section>
       </div>
@@ -52,6 +59,18 @@ export default function Pro() {
       </p>
 
       {isLoginPopupOpen && <LoginPopup setIsOpen={setIsLoginPopupOpen} />}
+
+      {proModal.isOpen && proModalStep === 1 && (
+        <ProModalStep1
+          data={proModal.data}
+          setProModalStep={setProModalStep}
+          setDepositor={setDepositor}
+        />
+      )}
+
+      {proModal.isOpen && proModalStep === 2 && (
+        <ProModalStep2 data={proModal.data} depositor={depositor} />
+      )}
     </>
   );
 }
