@@ -6,14 +6,17 @@ import PaymentCard from "../../components/molecules/PaymentCard";
 import { useNavigate } from "react-router-dom";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import LoginPopup from "../../components/organisms/LoginPopup";
+import useModalStore from "../../store/useModalStore";
 
 export default function Credit() {
   const navigate = useNavigate();
   const [isCreditForUsePopupOpen, setIsCreditForUsePopupOpen] = useState(false);
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
+  const { setCreditModalOpen } = useModalStore();
 
+  // 크레딧 구매 안내 모달 열기
   const handleClickBtn = (amount: string) => {
-    // 크레딧 구매 안내 모달 열기
+    setCreditModalOpen(true, amount);
   };
 
   return (
