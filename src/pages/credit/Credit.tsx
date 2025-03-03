@@ -7,16 +7,20 @@ import { useNavigate } from "react-router-dom";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import LoginPopup from "../../components/organisms/LoginPopup";
 import useModalStore from "../../store/useModalStore";
+import CreditModalStep1 from "../../components/organisms/CreditModalStep1";
+import CreditModalStep2 from "../../components/organisms/CreditModalStep2";
 
 export default function Credit() {
   const navigate = useNavigate();
   const [isCreditForUsePopupOpen, setIsCreditForUsePopupOpen] = useState(false);
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
-  const { setCreditModalOpen } = useModalStore();
+  const { setCreditModalOpen, creditModal } = useModalStore();
+  const [creditModalStep, setCreditModalStep] = useState(1);
 
   // 크레딧 구매 안내 모달 열기
-  const handleClickBtn = (amount: string) => {
-    setCreditModalOpen(true, amount);
+  const handleClickBtn = (data: { amount: string; price: string }) => {
+    setCreditModalOpen(true, data);
+    setCreditModalStep(1);
   };
 
   return (
@@ -26,21 +30,21 @@ export default function Credit() {
           <PaymentCard
             image="/images/credit/credit1.png"
             buttonLabel="크레딧 구매하기"
-            onClick={() => handleClickBtn("10800")}
+            onClick={() => handleClickBtn({ amount: "10000", price: "10800" })}
           />
         </section>
         <section className="card flex flex-col gap-4 w-[50%] md:w-1/5">
           <PaymentCard
             image="/images/credit/credit2.png"
             buttonLabel="크레딧 구매하기"
-            onClick={() => handleClickBtn("28800")}
+            onClick={() => handleClickBtn({ amount: "30000", price: "26800" })}
           />
         </section>
         <section className="card flex flex-col gap-4 w-[50%] md:w-1/5">
           <PaymentCard
             image="/images/credit/credit3.png"
             buttonLabel="크레딧 구매하기"
-            onClick={() => handleClickBtn("84000")}
+            onClick={() => handleClickBtn({ amount: "100000", price: "84000" })}
           />
         </section>
       </div>
@@ -63,6 +67,17 @@ export default function Credit() {
       )}
 
       {isLoginPopupOpen && <LoginPopup setIsOpen={setIsLoginPopupOpen} />}
+
+      {creditModal.isOpen && creditModalStep === 1 && (
+        <CreditModalStep1
+          data={creditModal.data}
+          setCreditModalStep={setCreditModalStep}
+        />
+      )}
+
+      {creditModal.isOpen && creditModalStep === 2 && (
+        <CreditModalStep2 data={creditModal.data} />
+      )}
     </>
   );
 }
