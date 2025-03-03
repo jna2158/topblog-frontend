@@ -8,6 +8,7 @@ import LoginPopup from "../../components/organisms/LoginPopup";
 import useModalStore from "../../store/useModalStore";
 import ProModalStep1 from "../../components/organisms/pro/ProModalStep1";
 import ProModalStep2 from "../../components/organisms/pro/ProModalStep2";
+import useUserStore from "../../store/useUserStore";
 
 export default function Pro() {
   const navigate = useNavigate();
@@ -15,8 +16,13 @@ export default function Pro() {
   const { setProModalOpen, proModal } = useModalStore();
   const [proModalStep, setProModalStep] = useState(1);
   const [depositor, setDepositor] = useState("");
+  const { user } = useUserStore();
 
   const handleClickBtn = (amount: number, day: number) => {
+    if (!user) {
+      setIsLoginPopupOpen(true);
+      return;
+    }
     setProModalOpen(true, { day, amount });
     setProModalStep(1);
   };

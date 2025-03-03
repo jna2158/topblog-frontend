@@ -9,6 +9,7 @@ import LoginPopup from "../../components/organisms/LoginPopup";
 import useModalStore from "../../store/useModalStore";
 import CreditModalStep1 from "../../components/organisms/CreditModalStep1";
 import CreditModalStep2 from "../../components/organisms/CreditModalStep2";
+import useUserStore from "../../store/useUserStore";
 
 export default function Credit() {
   const navigate = useNavigate();
@@ -17,9 +18,14 @@ export default function Credit() {
   const { setCreditModalOpen, creditModal } = useModalStore();
   const [creditModalStep, setCreditModalStep] = useState(1);
   const [depositor, setDepositor] = useState("");
+  const { user } = useUserStore();
 
   // 크레딧 구매 안내 모달 열기
   const handleClickBtn = (data: { amount: string; price: string }) => {
+    if (!user) {
+      setIsLoginPopupOpen(true);
+      return;
+    }
     setCreditModalOpen(true, data);
     setCreditModalStep(1);
   };
