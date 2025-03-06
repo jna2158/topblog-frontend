@@ -46,7 +46,7 @@ export default function CreditModalStep2({
                 </span>
               </div>
             </li>
-            <li>10분 이내로 계좌 조회 후 크레딧이 지급됩니다.</li>
+            <li>10분 ~ 20분 내에 계좌 조회 후 크레딧이 지급됩니다.</li>
             <li>
               입금자명을 반드시{" "}
               <span className="text-2xl font-bold text-red-500">

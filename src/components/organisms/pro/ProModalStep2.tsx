@@ -47,7 +47,9 @@ export default function ProModalStep2({
                 </span>
               </div>
             </li>
-            <li>10분 이내로 계좌 조회 후 프로 버전으로 업그레이드됩니다.</li>
+            <li>
+              10분 ~ 20분 이내로 계좌 조회 후 프로 버전으로 업그레이드됩니다.
+            </li>
             <li>
               입금자명을 반드시{" "}
               <span className="text-2xl font-bold text-red-500">

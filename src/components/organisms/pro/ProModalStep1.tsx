@@ -21,7 +21,7 @@ export default function ProModalStep1({
 
   const handleClickBtn = async () => {
     const res = await paymentService.purchasePro(Number(data.amount), data.day);
-    setDepositor(res.data.depositor);
+    setDepositor(res.data.random_username);
     setProModalStep(2);
   };
 

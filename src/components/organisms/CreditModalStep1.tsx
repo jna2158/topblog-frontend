@@ -21,8 +21,11 @@ export default function CreditModalStep1({
   const formattedPrice = new Intl.NumberFormat().format(Number(data.price));
 
   const handleClickBtn = async () => {
-    // await paymentService.purchaseCredit(Number(data.amount));
-    setDepositor("지원_110");
+    const res = await paymentService.purchaseCredit(
+      Number(data.price),
+      Number(data.amount)
+    );
+    setDepositor(res.data.random_username);
     setCreditModalStep(2);
   };
 

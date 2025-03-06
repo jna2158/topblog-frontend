@@ -2,19 +2,19 @@ import axios from "axios";
 
 export const paymentService = {
   // 크레딧 구매 신청하기
-  purchaseCredit: async (amount: number) => {
+  purchaseCredit: async (price: number, amount: number) => {
     const response = await axios.post(
-      `${process.env.REACT_APP_API_URL}/payments/purchase-credit`,
-      { amount }
+      `${process.env.REACT_APP_API_URL}/payments/random-username`,
+      { amount_schedule: price, product: amount + "크레딧" }
     );
     return response.data;
   },
 
   // 프로버전 구매 신청하기
-  purchasePro: async (amount: number, day: number) => {
+  purchasePro: async (price: number, amount: number) => {
     const response = await axios.post(
-      `${process.env.REACT_APP_API_URL}/payments/purchase-pro`,
-      { amount, day }
+      `${process.env.REACT_APP_API_URL}/payments/random-username`,
+      { amount_schedule: price, product: amount + "일" }
     );
     return response.data;
   },
