@@ -5,16 +5,16 @@ export const paymentService = {
   purchaseCredit: async (price: number, amount: number) => {
     const response = await axios.post(
       `${process.env.REACT_APP_API_URL}/payments/random-username`,
-      { amount_schedule: price, product: amount + "크레딧" }
+      { amount_schedule: price, product: "credit " + amount }
     );
     return response.data;
   },
 
   // 프로버전 구매 신청하기
-  purchasePro: async (price: number, amount: number) => {
+  purchasePro: async (price: number, day: number) => {
     const response = await axios.post(
       `${process.env.REACT_APP_API_URL}/payments/random-username`,
-      { amount_schedule: price, product: amount + "일" }
+      { amount_schedule: price, product: "pro " + day }
     );
     return response.data;
   },

@@ -42,14 +42,17 @@ export default function ProModalStep2({
               을 입금해주세요.
               <br />
               <div className="bg-white p-2 rounded-md border border-gray-300 inline-block mt-2">
-                <span className="text-xl font-bold text-gray-700">
-                  123-456-7890
+                <span className="text-lg font-bold text-gray-700">
+                  국민{" "}
+                  <span className="text-xl font-bold">040037-04-008437</span>{" "}
+                  조재영(틴터뷰)
                 </span>
               </div>
             </li>
             <li>
-              10분 ~ 20분 이내로 계좌 조회 후 프로 버전으로 업그레이드됩니다.
+              10 ~ 20분 이내로 계좌 조회 후 프로 버전으로 업그레이드됩니다.
             </li>
+            <li>30분 이내에 이체가 완료되어야 합니다.</li>
             <li>
               입금자명을 반드시{" "}
               <span className="text-2xl font-bold text-red-500">
