@@ -18,6 +18,33 @@ export const paymentService = {
     );
     return response.data;
   },
+
+  // 크레딧 환불 신청하기
+  refundCredit: async (id: string) => {
+    const response = await axios.get(
+      `${process.env.REACT_APP_API_URL}/payments/calculate-refund-credit`,
+      {
+        params: {
+          payment_id: id,
+        },
+      }
+    );
+    return response.data;
+  },
+
+  // 프로버전 환불 신청하기
+  refundPro: async (id: string) => {
+    const response = await axios.get(
+      `${process.env.REACT_APP_API_URL}/payments/calculate-refund-pro`,
+      {
+        params: {
+          payment_id: id,
+        },
+      }
+    );
+    return response.data;
+  },
+
   // 결제 내역 조회
   getPaymentHistory: async (page: number, query: string | "") => {
     const response = await axios.get(

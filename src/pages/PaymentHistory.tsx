@@ -8,6 +8,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ReactPaginate from "react-paginate";
+import CreditRefundModal from "../components/organisms/refund/CreditRefundModal";
+import ProRefundModal from "../components/organisms/refund/ProRefundModal";
+import showToast from "../hooks/useShowToast";
 
 export default function PaymentHistory() {
   const { user } = useUserStore();
@@ -16,6 +19,10 @@ export default function PaymentHistory() {
   const [totalPages, setTotalPages] = useState(0);
   const [total, setTotal] = useState(0);
   const [search, setSearch] = useState("");
+  const [creditRefundModalOpen, setCreditRefundModalOpen] = useState(false);
+  const [proRefundModalOpen, setProRefundModalOpen] = useState(false);
+  const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
+  const [refundDetail, setRefundDetail] = useState<any>(null);
 
   const statusMap: Record<string, string> = {
     1: "대기중",
@@ -46,8 +53,35 @@ export default function PaymentHistory() {
     });
   };
 
+  // 검색
   const handleSearch = async () => {
     await fetchHistory(true);
+  };
+
+  // 환불 신청
+  const setRefundModalOpen = (id: string, isCredit: boolean) => {
+    if (isCredit) {
+      paymentService
+        .refundCredit(id)
+        .then((res) => {
+          setRefundDetail(res.data);
+          setCreditRefundModalOpen(true);
+        })
+        .catch((error) => {
+          showToast(error.response.data.errors.detail);
+        });
+    } else {
+      paymentService
+        .refundPro(id)
+        .then((res) => {
+          setRefundDetail(res.data);
+          setProRefundModalOpen(true);
+        })
+        .catch((error) => {
+          showToast(error.response.data.errors.detail);
+        });
+    }
+    setSelectedItemId(id);
   };
 
   useEffect(() => {
@@ -82,7 +116,6 @@ export default function PaymentHistory() {
             {user?.staff && (
               <th className="table-header">발급된 입금자명 / 실제 입금자명</th>
             )}
-            {/* {user?.staff && <th className="table-header">실제 입금자명</th>} */}
             <th className="table-header">이체 날짜 (은행명)</th>
             <th className="table-header">상품명</th>
             <th className="table-header">결제 예정 금액</th>
@@ -116,9 +149,6 @@ export default function PaymentHistory() {
                   }` || "-"}
                 </td>
               )}
-              {/* {user?.staff && (
-                <td className="table-data">{item.deposit_username || "-"}</td>
-              )} */}
 
               <td className="table-data">
                 {item.transfer_at
@@ -153,7 +183,15 @@ export default function PaymentHistory() {
               </td>
               {user?.staff && (
                 <td className="table-data">
-                  <button className="bg-primary text-gray-700 px-4 py-2 rounded">
+                  <button
+                    className="bg-primary text-gray-700 px-4 py-2 rounded"
+                    onClick={() =>
+                      setRefundModalOpen(
+                        item.id,
+                        item.product.includes("credit")
+                      )
+                    }
+                  >
                     환불
                   </button>
                 </td>
@@ -184,6 +222,18 @@ export default function PaymentHistory() {
           forcePage={currentPage - 1}
         />
       </div>
+      {creditRefundModalOpen && (
+        <CreditRefundModal
+          setCreditRefundModalOpen={setCreditRefundModalOpen}
+          refundDetail={refundDetail}
+        />
+      )}
+      {proRefundModalOpen && (
+        <ProRefundModal
+          setProRefundModalOpen={setProRefundModalOpen}
+          refundDetail={refundDetail}
+        />
+      )}
     </section>
   );
 }
