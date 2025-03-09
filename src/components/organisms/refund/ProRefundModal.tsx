@@ -10,13 +10,11 @@ export default function ProRefundModal({
 }) {
   return (
     <div className="popup-overlay flex items-center justify-center">
-      <div className="relative popup w-96 bg-white rounded-lg shadow-lg">
+      <div className="relative popup w-auto bg-white rounded-lg shadow-lg">
         <Xmark setIsOpen={setProRefundModalOpen} />
         <div className="p-6 text-left">
           <header className="text-center mb-4">
-            <h2 className="text-2xl font-bold text-gray-900">
-              Pro 환불 안내
-            </h2>
+            <h2 className="text-2xl font-bold text-gray-900">Pro 환불 안내</h2>
           </header>
           <div className="refund-details space-y-3 text-gray-700">
             <p>할인율: {refundDetail.discount_rate}%</p>
@@ -27,6 +25,10 @@ export default function ProRefundModal({
             </p>
             <p>남은 일수: {refundDetail.remaining_days}일</p>
             <p>사용 일수: {refundDetail.used_days}일</p>
+            <p className="text-sm text-gray-500">
+              환불 금액 계산 공식 정가 ÷ 총일수 × 남은일수 × ( 1 - 할인율 ) ×
+              0.8
+            </p>
           </div>
         </div>
       </div>

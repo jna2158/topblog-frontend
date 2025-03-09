@@ -10,7 +10,7 @@ export default function CreditRefundModal({
 }) {
   return (
     <div className="popup-overlay flex items-center justify-center">
-      <div className="relative popup w-96 bg-white rounded-lg shadow-lg">
+      <div className="relative popup w-auto bg-white rounded-lg shadow-lg">
         <Xmark setIsOpen={setCreditRefundModalOpen} />
         <div className="p-6 text-left">
           <header className="text-center mb-4">
@@ -36,6 +36,10 @@ export default function CreditRefundModal({
             </p>
             <p>실제 결제 금액: {refundDetail.actual_paid.toLocaleString()}원</p>
             <p>구매 일자: {refundDetail.purchase_date}</p>
+            <p className="text-sm text-gray-500">
+              [환불 금액] = (남은 크레딧 수 / 총 구매 크레딧 수) (실제 결제
+              금액) × 0.8
+            </p>
           </div>
         </div>
       </div>
