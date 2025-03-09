@@ -57,9 +57,9 @@ export default function Credit() {
       </div>
 
       <div className="flex flex-col md:flex-row justify-between items-center gap-2 md:gap-5 px-4 md:px-[16vw]">
-        <p className="text-gray-500 text-center md:text-left">
+        {/* <p className="text-gray-500 text-center md:text-left">
           * 위 상품의 최대 이용기간은 1년입니다.
-        </p>
+        </p> */}
         <p
           className="text-blue-500 font-semibold flex items-center gap-1 cursor-pointer"
           onClick={() => navigate("/credit/refund-policy")}

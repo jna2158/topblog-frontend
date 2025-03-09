@@ -38,7 +38,7 @@ export default function CreditRefundModal({
             <p>구매 일자: {refundDetail.purchase_date}</p>
             <p className="text-sm text-gray-500">
               [환불 금액] = (남은 크레딧 수 / 총 구매 크레딧 수) (실제 결제
-              금액) × 0.8
+              금액) × 0.9
             </p>
           </div>
         </div>

@@ -27,7 +27,7 @@ export default function ProRefundModal({
             <p>사용 일수: {refundDetail.used_days}일</p>
             <p className="text-sm text-gray-500">
               환불 금액 계산 공식 정가 ÷ 총일수 × 남은일수 × ( 1 - 할인율 ) ×
-              0.8
+              0.9
             </p>
           </div>
         </div>
