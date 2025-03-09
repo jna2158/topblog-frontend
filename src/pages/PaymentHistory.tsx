@@ -78,14 +78,14 @@ export default function PaymentHistory() {
           <tr>
             <th className="table-header">번호</th>
             {user?.staff && <th className="table-header">아이디</th>}
-            <th className="table-header">입금자명</th>
+            {user?.staff && <th className="table-header">입금자명</th>}
             <th className="table-header">주문번호</th>
             <th className="table-header">이체 날짜 (은행명)</th>
             <th className="table-header">상품명</th>
             <th className="table-header">금액</th>
-            <th className="table-header">만료 일시</th>
+            {user?.staff && <th className="table-header">만료 일시</th>}
             <th className="table-header">상태</th>
-            <th className="table-header">환불</th>
+            {user?.staff && <th className="table-header">환불</th>}
           </tr>
         </thead>
         <tbody>
@@ -104,7 +104,9 @@ export default function PaymentHistory() {
                     : "-"}
                 </td>
               )}
-              <td className="table-data">{item.random_username || "-"}</td>
+              {user?.staff && (
+                <td className="table-data">{item.random_username || "-"}</td>
+              )}
               <td className="table-data">
                 <span className="truncate">{item.id ? `${item.id}` : "-"}</span>
               </td>
@@ -115,15 +117,18 @@ export default function PaymentHistory() {
                     })`
                   : "-"}
               </td>
+
               <td className="table-data">{item.product}</td>
               <td className="table-data">
                 {item.amount_schedule.toLocaleString()}
               </td>
-              <td className="table-data">
-                {item.expires_at
-                  ? dayjs(item.expires_at).format("YYYY-MM-DD HH:mm:ss")
-                  : "-"}
-              </td>
+              {user?.staff && (
+                <td className="table-data">
+                  {item.expires_at
+                    ? dayjs(item.expires_at).format("YYYY-MM-DD HH:mm:ss")
+                    : "-"}
+                </td>
+              )}
               <td className="table-data">
                 <span
                   className={`inline-block px-3 py-1 text-sm font-semibold text-white rounded-full ${
@@ -133,11 +138,13 @@ export default function PaymentHistory() {
                   {statusMap[item.status]}
                 </span>
               </td>
-              <td className="table-data">
-                <button className="bg-primary text-gray-700 px-4 py-2 rounded">
-                  환불
-                </button>
-              </td>
+              {user?.staff && (
+                <td className="table-data">
+                  <button className="bg-primary text-gray-700 px-4 py-2 rounded">
+                    환불
+                  </button>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>
