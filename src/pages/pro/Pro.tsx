@@ -39,11 +39,11 @@ export default function Pro() {
           />
         </section>
         <section className="card flex flex-col gap-4">
-          <h2 className="text-5xl font-Jua font-semibold">180일</h2>
+          <h2 className="text-5xl font-Jua font-semibold">90일</h2>
           <PaymentCard
             image="/images/pro/pro2.png"
             buttonLabel="프로버전 구매하기"
-            onClick={() => handleClickBtn(52000, 180)}
+            onClick={() => handleClickBtn(52000, 90)}
           />
         </section>
         <section className="card flex flex-col gap-4">

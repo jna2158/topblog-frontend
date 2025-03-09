@@ -19,14 +19,13 @@ export const paymentService = {
     return response.data;
   },
   // 결제 내역 조회
-  getPaymentHistory: async (page: number, search: string) => {
+  getPaymentHistory: async (page: number, query: string | "") => {
     const response = await axios.get(
-      `${process.env.REACT_APP_API_URL}/payments/payments-list`,
+      `${process.env.REACT_APP_API_URL}/payments/payment-history`,
       {
         params: {
           page,
-          page_size: 10,
-          search,
+          query,
         },
       }
     );

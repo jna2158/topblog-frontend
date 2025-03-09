@@ -14,23 +14,34 @@ export default function PaymentHistory() {
   const [history, setHistory] = useState<any>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const itemsPerPage = 10;
   const [total, setTotal] = useState(0);
   const [search, setSearch] = useState("");
 
   const statusMap: Record<string, string> = {
-    DONE: "결제 완료",
+    1: "대기중",
+    2: "만료",
+    3: "완료",
+    4: "금액 불일치",
+    5: "늦은 결제",
+    6: "알 수 없음",
+  };
+
+  const statusColorMap: Record<string, string> = {
+    1: "bg-yellow-500", // 대기중
+    2: "bg-red-500", // 만료
+    3: "bg-blue-500", // 완료
+    4: "bg-orange-500", // 금액 불일치
+    5: "bg-purple-500", // 늦은 결제
+    6: "bg-gray-500", // 알 수 없음
   };
 
   // 결제 내역 조회
   const fetchHistory = async () => {
-    await paymentService
-      .getPaymentHistory(currentPage, search)
-      .then((res) => {
-        setHistory(res.data.results);
-        setTotalPages(Math.ceil(res.data.count / itemsPerPage));
-        setTotal(res.data.count);
-      });
+    await paymentService.getPaymentHistory(currentPage, search).then((res) => {
+      setHistory(res.data.items);
+      setTotalPages(res.data.total_pages);
+      setTotal(res.data.total_items);
+    });
   };
 
   useEffect(() => {
@@ -65,8 +76,8 @@ export default function PaymentHistory() {
             <th className="table-header">번호</th>
             {user?.staff && <th className="table-header">아이디</th>}
             <th className="table-header">주문번호</th>
-            <th className="table-header">날짜</th>
-            <th className="table-header">유형</th>
+            <th className="table-header">이체 날짜</th>
+            <th className="table-header">상품명</th>
             <th className="table-header">금액</th>
             <th className="table-header">상태</th>
           </tr>
@@ -83,22 +94,20 @@ export default function PaymentHistory() {
               )}
               <td className="table-data">
                 <span className="truncate">{item.id ? `${item.id}` : "-"}</span>
-                {/* <button
-                  onClick={() => navigator.clipboard.writeText(item.id || "-")}
-                  className="ml-2 text-blue-500 hover:text-blue-700"
-                >
-                  복사
-                </button> */}
               </td>
               <td className="table-data">
-                {dayjs(item.approved_at).format("YYYY-MM-DD")}
+                {item.transfer_at
+                  ? dayjs(item.transfer_at).format("YYYY-MM-DD")
+                  : "-"}
               </td>
-              <td className="table-data">{item.order_name}</td>
-              <td className="table-data">{item.amount.toLocaleString()}</td>
+              <td className="table-data">{item.product}</td>
+              <td className="table-data">
+                {item.amount_schedule.toLocaleString()}
+              </td>
               <td className="table-data">
                 <span
                   className={`inline-block px-3 py-1 text-sm font-semibold text-white rounded-full ${
-                    item.status === "DONE" ? "bg-blue-500" : "bg-gray-500"
+                    statusColorMap[item.status] || "bg-gray-500"
                   }`}
                 >
                   {statusMap[item.status]}
