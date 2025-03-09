@@ -9,6 +9,7 @@ import ProRefundPolicy from "./pages/pro/ProRefundPolicy";
 import CreditRefundPolicy from "./pages/credit/CreditRefundPolicy";
 import Footer from "./components/organisms/Footer";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import OpenChating from "./pages/OpenChating";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
               path="/credit/refund-policy"
               element={<CreditRefundPolicy />}
             />
+            <Route path="/open-chatting" element={<OpenChating />} />
           </Routes>
         </div>
         <Footer />

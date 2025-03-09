@@ -43,6 +43,16 @@ export default function LoginButton() {
                 className="p-2 hover:bg-gray-100 cursor-pointer"
                 onClick={(event) => {
                   setDropdownVisible(false);
+                  navigate("/open-chatting");
+                  event.stopPropagation();
+                }}
+              >
+                문의하기
+              </div>
+              <div
+                className="p-2 hover:bg-gray-100 cursor-pointer"
+                onClick={(event) => {
+                  setDropdownVisible(false);
                   navigate("/payment-history");
                   event.stopPropagation();
                 }}

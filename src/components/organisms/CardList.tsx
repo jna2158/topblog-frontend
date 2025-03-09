@@ -3,8 +3,11 @@ import Slider from "react-slick";
 import Card from "../molecules/Card";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useNavigate } from "react-router-dom";
 
 export default function CardList() {
+  const navigate = useNavigate();
+
   const settings = {
     dots: true,
     speed: 1000,
@@ -18,7 +21,7 @@ export default function CardList() {
   };
 
   const handleKakaoClick = () => {
-    window.location.href = "https://open.kakao.com/o/sZVP2Sah";
+    navigate("/open-chatting");
   };
 
   return (
