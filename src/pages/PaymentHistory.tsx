@@ -21,7 +21,7 @@ export default function PaymentHistory() {
     1: "대기중",
     2: "만료",
     3: "완료",
-    4: "금액 불일치",
+    4: "불일치",
     5: "늦은 결제",
     6: "알 수 없음",
   };
@@ -73,21 +73,21 @@ export default function PaymentHistory() {
         />
       )}
       <p className="text-sm text-gray-600 mb-4">총 {total}건</p>
-      <table className="min-w-full bg-white shadow-lg rounded-lg overflow-hidden">
+      <table className="text-md min-w-full bg-white shadow-lg rounded-lg overflow-hidden">
         <thead>
           <tr>
             {!user?.staff && <th className="table-header">번호</th>}
-            {user?.staff && <th className="table-header">아이디</th>}
-            {user?.staff && <th className="table-header">발급된 입금자명</th>}
-            {user?.staff && <th className="table-header">실제 입금자명</th>}
             <th className="table-header">주문번호</th>
+            {user?.staff && <th className="table-header">아이디</th>}
+            {user?.staff && <th className="table-header">발급된 입금자명 / 실제 입금자명</th>}
+            {/* {user?.staff && <th className="table-header">실제 입금자명</th>} */}
             <th className="table-header">이체 날짜 (은행명)</th>
             <th className="table-header">상품명</th>
-            <th className="table-header">금액</th>
+            {user?.staff && <th className="table-header">결제 예정 금액</th>}
+            <th className="table-header">결제 금액</th>
             {user?.staff && <th className="table-header">만료 일시</th>}
             <th className="table-header">상태</th>
             {user?.staff && <th className="table-header">환불</th>}
-            {!user?.staff && <th className="table-header">환불</th>}
           </tr>
         </thead>
         <tbody>
@@ -101,34 +101,38 @@ export default function PaymentHistory() {
                   {index + 1 + (currentPage - 1) * 10}
                 </td>
               )}
+              <td className="table-data">
+                <span className="truncate">{item.id ? `${item.id}` : "-"}</span>
+              </td>
               {user?.staff && (
                 <td className="table-data">{item.email ? item.email : "-"}</td>
               )}
               {user?.staff && (
-                <td className="table-data">{item.random_username || "-"}</td>
+                <td className="table-data">{`${item.random_username} / ${item?.deposit_username || "-" }` || "-"}</td>
               )}
-              {user?.staff && (
+              {/* {user?.staff && (
                 <td className="table-data">{item.deposit_username || "-"}</td>
-              )}
-              <td className="table-data">
-                <span className="truncate">{item.id ? `${item.id}` : "-"}</span>
-              </td>
+              )} */}
+
               <td className="table-data">
                 {item.transfer_at
-                  ? `${dayjs(item.transfer_at).format("YYYY-MM-DD")} (${
+                  ? `${dayjs(item.transfer_at).format("YY.MM.DD")} (${
                       item.bank_name || "-"
                     })`
                   : "-"}
               </td>
 
               <td className="table-data">{item.product}</td>
-              <td className="table-data">
-                {item.amount_schedule.toLocaleString()}
-              </td>
+              {user?.staff && (
+                <td className="table-data">
+                  {item.amount_schedule.toLocaleString()}
+                </td>
+              )}
+              <td className="table-data">{item.amount.toLocaleString()}</td>
               {user?.staff && (
                 <td className="table-data">
                   {item.expires_at
-                    ? dayjs(item.expires_at).format("YYYY-MM-DD HH:mm:ss")
+                    ? dayjs(item.expires_at).format("YY.MM.DD HH:mm:ss")
                     : "-"}
                 </td>
               )}
@@ -145,13 +149,6 @@ export default function PaymentHistory() {
                 <td className="table-data">
                   <button className="bg-primary text-gray-700 px-4 py-2 rounded">
                     환불
-                  </button>
-                </td>
-              )}
-              {!user?.staff && (
-                <td className="table-data">
-                  <button className="bg-gray-400 text-white px-4 py-2 rounded">
-                    환불금액 확인하기
                   </button>
                 </td>
               )}
