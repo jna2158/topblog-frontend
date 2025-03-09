@@ -79,11 +79,13 @@ export default function PaymentHistory() {
             {!user?.staff && <th className="table-header">번호</th>}
             <th className="table-header">주문번호</th>
             {user?.staff && <th className="table-header">아이디</th>}
-            {user?.staff && <th className="table-header">발급된 입금자명 / 실제 입금자명</th>}
+            {user?.staff && (
+              <th className="table-header">발급된 입금자명 / 실제 입금자명</th>
+            )}
             {/* {user?.staff && <th className="table-header">실제 입금자명</th>} */}
             <th className="table-header">이체 날짜 (은행명)</th>
             <th className="table-header">상품명</th>
-            {user?.staff && <th className="table-header">결제 예정 금액</th>}
+            <th className="table-header">결제 예정 금액</th>
             <th className="table-header">결제 금액</th>
             {user?.staff && <th className="table-header">만료 일시</th>}
             <th className="table-header">상태</th>
@@ -108,7 +110,11 @@ export default function PaymentHistory() {
                 <td className="table-data">{item.email ? item.email : "-"}</td>
               )}
               {user?.staff && (
-                <td className="table-data">{`${item.random_username} / ${item?.deposit_username || "-" }` || "-"}</td>
+                <td className="table-data">
+                  {`${item.random_username} / ${
+                    item?.deposit_username || "-"
+                  }` || "-"}
+                </td>
               )}
               {/* {user?.staff && (
                 <td className="table-data">{item.deposit_username || "-"}</td>
@@ -123,11 +129,11 @@ export default function PaymentHistory() {
               </td>
 
               <td className="table-data">{item.product}</td>
-              {user?.staff && (
-                <td className="table-data">
-                  {item.amount_schedule.toLocaleString()}
-                </td>
-              )}
+
+              <td className="table-data">
+                {item.amount_schedule.toLocaleString()}
+              </td>
+
               <td className="table-data">{item.amount.toLocaleString()}</td>
               {user?.staff && (
                 <td className="table-data">
