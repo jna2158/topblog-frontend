@@ -36,12 +36,18 @@ export default function PaymentHistory() {
   };
 
   // 결제 내역 조회
-  const fetchHistory = async () => {
-    await paymentService.getPaymentHistory(currentPage, search).then((res) => {
+  const fetchHistory = async (isSearch: boolean = false) => {
+    const page = isSearch ? 1 : currentPage;
+    setCurrentPage(page);
+    await paymentService.getPaymentHistory(page, search).then((res) => {
       setHistory(res.data.items);
       setTotalPages(res.data.total_pages);
       setTotal(res.data.total_items);
     });
+  };
+
+  const handleSearch = async () => {
+    await fetchHistory(true);
   };
 
   useEffect(() => {
@@ -61,10 +67,7 @@ export default function PaymentHistory() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           onKeyPress={(e) => {
-            if (e.key === "Enter") {
-              fetchHistory();
-              setCurrentPage(1);
-            }
+            handleSearch();
           }}
           className="mb-4 p-2 border border-gray-300 rounded"
         />
@@ -75,11 +78,14 @@ export default function PaymentHistory() {
           <tr>
             <th className="table-header">번호</th>
             {user?.staff && <th className="table-header">아이디</th>}
+            <th className="table-header">입금자명</th>
             <th className="table-header">주문번호</th>
-            <th className="table-header">이체 날짜</th>
+            <th className="table-header">이체 날짜 (은행명)</th>
             <th className="table-header">상품명</th>
             <th className="table-header">금액</th>
+            <th className="table-header">만료 일시</th>
             <th className="table-header">상태</th>
+            <th className="table-header">환불</th>
           </tr>
         </thead>
         <tbody>
@@ -88,21 +94,35 @@ export default function PaymentHistory() {
               key={item.id}
               className="hover:bg-gray-100 transition duration-200"
             >
-              <td className="table-data">{index + 1}</td>
+              <td className="table-data">
+                {index + 1 + (currentPage - 1) * 10}
+              </td>
               {user?.staff && (
-                <td className="table-data">{item.user_email || "-"}</td>
+                <td className="table-data">
+                  {item.email
+                    ? `${item.email} (${item?.deposit_username || "-"})`
+                    : "-"}
+                </td>
               )}
+              <td className="table-data">{item.random_username || "-"}</td>
               <td className="table-data">
                 <span className="truncate">{item.id ? `${item.id}` : "-"}</span>
               </td>
               <td className="table-data">
                 {item.transfer_at
-                  ? dayjs(item.transfer_at).format("YYYY-MM-DD")
+                  ? `${dayjs(item.transfer_at).format("YYYY-MM-DD")} (${
+                      item.bank_name || "-"
+                    })`
                   : "-"}
               </td>
               <td className="table-data">{item.product}</td>
               <td className="table-data">
                 {item.amount_schedule.toLocaleString()}
+              </td>
+              <td className="table-data">
+                {item.expires_at
+                  ? dayjs(item.expires_at).format("YYYY-MM-DD HH:mm:ss")
+                  : "-"}
               </td>
               <td className="table-data">
                 <span
@@ -112,6 +132,11 @@ export default function PaymentHistory() {
                 >
                   {statusMap[item.status]}
                 </span>
+              </td>
+              <td className="table-data">
+                <button className="bg-primary text-gray-700 px-4 py-2 rounded">
+                  환불
+                </button>
               </td>
             </tr>
           ))}
