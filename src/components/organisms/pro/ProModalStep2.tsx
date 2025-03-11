@@ -28,8 +28,15 @@ export default function ProModalStep2({
           </h2>
         </div>
 
-        <p className="text-lg font-semibold text-center text-gray-800 mb-4">
+        <p className="text-lg text-center text-gray-800 mb-4">
           {data.day}일 버전 구매 신청이 완료되었습니다!
+          <br />
+        </p>
+
+        <p className="text-lg font-semibold text-center mb-4">
+          입금자명을 반드시{" "}
+          <span className="text-2xl font-bold text-red-500">{depositor}</span>{" "}
+          로 입력해주어야 확인이 가능합니다.
         </p>
 
         <div className="bg-gray-50 p-4 rounded-lg shadow-sm">
@@ -50,16 +57,9 @@ export default function ProModalStep2({
               </div>
             </li>
             <li>
-              10 ~ 20분 이내로 계좌 조회 후 프로 버전으로 업그레이드됩니다.
+              10 ~ 20분 이내로 계좌 조회 후, 프로버전으로 자동 업그레이드됩니다.
             </li>
-            <li>30분 이내에 이체가 완료되어야 합니다.</li>
-            <li>
-              입금자명을 반드시{" "}
-              <span className="text-2xl font-bold text-red-500">
-                {depositor}
-              </span>{" "}
-              로 입력해주어야 확인이 가능합니다.
-            </li>
+            <li>현 시간부로 30분 이내에 이체가 완료되어야 합니다.</li>
           </ol>
         </div>
         <Button

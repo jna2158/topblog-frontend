@@ -27,8 +27,15 @@ export default function CreditModalStep2({
           <h2 className="text-2xl font-bold text-gray-900">크레딧 구매 안내</h2>
         </div>
 
-        <p className="text-lg font-semibold text-center text-gray-800 mb-4">
+        <p className="text-lg text-center text-gray-800 mb-4">
           크레딧 구매 신청이 완료되었습니다!
+          <br />
+        </p>
+
+        <p className="text-lg font-semibold text-center mb-4">
+          입금자명을 반드시{" "}
+          <span className="text-2xl font-bold text-red-500">{depositor}</span>{" "}
+          로 입력해주어야 확인이 가능합니다.
         </p>
 
         <div className="bg-gray-50 p-4 rounded-lg shadow-sm">
@@ -48,15 +55,8 @@ export default function CreditModalStep2({
                 </span>
               </div>
             </li>
-            <li>10 ~ 20분 내에 계좌 조회 후 크레딧이 지급됩니다.</li>
-            <li>30분 내에 이체가 완료되어야 합니다.</li>
-            <li>
-              입금자명을 반드시{" "}
-              <span className="text-2xl font-bold text-red-500">
-                {depositor}
-              </span>{" "}
-              로 입력해주어야 확인이 가능합니다.
-            </li>
+            <li>10 ~ 20분 내에 계좌 조회 후, 자동으로 크레딧이 지급됩니다.</li>
+            <li>현 시간부로 30분 이내에 이체가 완료되어야 합니다.</li>
           </ol>
         </div>
 
