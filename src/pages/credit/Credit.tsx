@@ -44,7 +44,7 @@ export default function Credit() {
           <PaymentCard
             image="/images/credit/credit2.png"
             buttonLabel="크레딧 구매하기"
-            onClick={() => handleClickBtn({ amount: "30000", price: "26800" })}
+            onClick={() => handleClickBtn({ amount: "30000", price: "28800" })}
           />
         </section>
         <section className="card flex flex-col gap-4 w-[50%] md:w-1/5">
