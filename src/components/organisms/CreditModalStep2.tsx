@@ -65,7 +65,7 @@ export default function CreditModalStep2({
               </div>
             </li>
             <li className="mt-[0.8vw]">
-              10 ~ 20분 내에 계좌 조회 후, 자동으로 크레딧이 지급됩니다.
+              10~20분 내 확인 후, 자동으로 크레딧이 지급됩니다.
             </li>
             <li className="mt-[0.8vw]">
               현 시간부로 30분 이내에 이체가 완료되어야 합니다.
