@@ -19,7 +19,7 @@ export default function DownloadDropdownButton() {
         className="bg-white text-gray-600"
       />
       {isDropdownVisible && (
-        <div className="dropdown w-[10vw]">
+        <div className="dropdown w-[10vw] top-[3vw]">
           <div
             className="text-[1vw] p-2 hover:bg-gray-100 cursor-pointer"
             onClick={(event) => {
