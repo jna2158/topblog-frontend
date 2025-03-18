@@ -27,16 +27,18 @@ export default function LoginButton() {
           onMouseEnter={() => setDropdownVisible(true)}
           onMouseLeave={() => setDropdownVisible(false)}
         >
-          <Button
-            label={user.name + "님"}
-            onClick={() => {}}
-            fontSize="1.3vw"
-            className="text-gray-700 font-semibold bg-white"
-          />
-          {/* <FontAwesomeIcon
-            icon={faChevronDown}
-            className="absolute text-[1.3vw] right-0 top-[-2px]"
-          /> */}
+          <div>
+            <Button
+              label={user.name + "님"}
+              onClick={() => {}}
+              fontSize="1.3vw"
+              className="text-gray-700 font-semibold bg-white"
+            />
+            <FontAwesomeIcon
+              icon={faChevronDown}
+              className="absolute text-[1.2vw] right-0 top-[17px]"
+            />
+          </div>
           {isDropdownVisible && (
             <div className="dropdown w-auto">
               <div

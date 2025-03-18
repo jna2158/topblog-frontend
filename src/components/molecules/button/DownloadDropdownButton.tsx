@@ -19,9 +19,9 @@ export default function DownloadDropdownButton() {
         className="bg-white text-gray-600"
       />
       {isDropdownVisible && (
-        <div className="dropdown w-[18vw]"> {/* 뷰포트 너비의 18% */}
+        <div className="dropdown w-[10vw]">
           <div
-            className="p-2 hover:bg-gray-100 cursor-pointer"
+            className="text-[1vw] p-2 hover:bg-gray-100 cursor-pointer"
             onClick={(event) => {
               setDropdownVisible(false);
               downloadProgram("Windows");
@@ -31,7 +31,7 @@ export default function DownloadDropdownButton() {
             Windows 다운로드
           </div>
           <div
-            className="p-2 hover:bg-gray-100 cursor-pointer"
+            className="text-[1vw] p-2 hover:bg-gray-100 cursor-pointer"
             onClick={(event) => {
               setDropdownVisible(false);
               downloadProgram("Mac");

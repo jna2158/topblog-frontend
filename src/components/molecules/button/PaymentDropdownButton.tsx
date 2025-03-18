@@ -19,9 +19,9 @@ export default function PaymentDropdownButton() {
         className="bg-white text-gray-600"
       />
       {isDropdownVisible && (
-        <div className="dropdown w-[15vw]">
+        <div className="dropdown w-[10vw]">
           <div
-            className="p-2 hover:bg-gray-100 cursor-pointer"
+            className="text-[1vw] p-2 hover:bg-gray-100 cursor-pointer"
             onClick={(event) => {
               setDropdownVisible(false);
               navigate("/credit");
@@ -31,7 +31,7 @@ export default function PaymentDropdownButton() {
             크레딧 구매
           </div>
           <div
-            className="p-2 hover:bg-gray-100 cursor-pointer"
+            className="text-[1vw] p-2 hover:bg-gray-100 cursor-pointer"
             onClick={(event) => {
               setDropdownVisible(false);
               navigate("/pro");
