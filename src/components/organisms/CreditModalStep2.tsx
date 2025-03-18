@@ -36,11 +36,11 @@ export default function CreditModalStep2({
 
         <p className="text-[1.2vw] text-center">
           <span className="font-bold">입금자명을 반드시</span>
-          <div className="mt-[-0.5vw]">
+          <div>
             <span className="text-[2vw] font-bold text-red-500 mx-[0.5vw]">
               {depositor}
             </span>
-            <span className="font-bold">로 입력</span>해주어야 확인이
+            <span className="font-bold">로 <br />입력</span>해주어야 확인이
             가능합니다.
           </div>
         </p>
