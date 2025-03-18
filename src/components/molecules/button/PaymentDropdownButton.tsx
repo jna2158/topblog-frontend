@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "../../atoms/Button";
 import { useNavigate } from "react-router-dom";
+
 export default function PaymentDropdownButton() {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
   const navigate = useNavigate();
@@ -14,11 +15,11 @@ export default function PaymentDropdownButton() {
       <Button
         label="구매하기"
         onClick={() => {}}
-        fontSize="1.3rem"
+        fontSize="1.3vw"
         className="bg-white text-gray-600"
       />
       {isDropdownVisible && (
-        <div className="dropdown w-[150px]">
+        <div className="dropdown w-[15vw]">
           <div
             className="p-2 hover:bg-gray-100 cursor-pointer"
             onClick={(event) => {

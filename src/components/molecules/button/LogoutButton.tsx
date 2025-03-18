@@ -14,7 +14,7 @@ export default function LogoutButton() {
 
   return (
     <div
-      className="p-2 hover:bg-gray-100 cursor-pointer"
+      className="text-[1.1vw] p-2 hover:bg-gray-100 cursor-pointer"
       onClick={handleClickLogoutBtn}
     >
       로그아웃

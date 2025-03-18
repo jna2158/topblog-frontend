@@ -30,17 +30,17 @@ export default function LoginButton() {
           <Button
             label={user.name + "님"}
             onClick={() => {}}
-            fontSize="1.3rem"
+            fontSize="1.3vw"
             className="text-gray-700 font-semibold bg-white"
           />
-          <FontAwesomeIcon
+          {/* <FontAwesomeIcon
             icon={faChevronDown}
-            className="absolute text-lg right-0 top-[-2px]"
-          />
+            className="absolute text-[1.3vw] right-0 top-[-2px]"
+          /> */}
           {isDropdownVisible && (
-            <div className="dropdown w-40">
+            <div className="dropdown w-auto">
               <div
-                className="p-2 hover:bg-gray-100 cursor-pointer"
+                className="text-[1.1vw] p-2 hover:bg-gray-100 cursor-pointer"
                 onClick={(event) => {
                   setDropdownVisible(false);
                   navigate("/open-chatting");
@@ -50,7 +50,7 @@ export default function LoginButton() {
                 문의하기
               </div>
               <div
-                className="p-2 hover:bg-gray-100 cursor-pointer"
+                className="text-[1.1vw] p-2 hover:bg-gray-100 cursor-pointer"
                 onClick={(event) => {
                   setDropdownVisible(false);
                   navigate("/payment-history");
@@ -67,7 +67,7 @@ export default function LoginButton() {
         <Button
           label="로그인"
           onClick={handleClickLoginButton}
-          fontSize="1.3rem"
+          fontSize="1.3vw"
           className="text-gray-600 bg-[#C5FFAE] ml-10"
         />
       )}
