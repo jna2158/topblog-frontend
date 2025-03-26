@@ -8,7 +8,7 @@ import Drawer from "./Drawer";
 
 export default function GlobalNavigationBar() {
   return (
-    <header className="h-[8vh] border-b border-[#ddd] bg-white">
+    <header className="h-[7vh] border-b border-[#ddd] bg-white">
       <div className="flex items-center justify-between h-full max-w-[90vw] m-auto px-4">
         <Logo />
         <nav className="hidden md:flex items-center space-x-7">
