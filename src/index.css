@@ -5,12 +5,16 @@
 @layer components {
   .button {
     @apply bg-primary text-white px-6 py-3 rounded-xl;
+    /* @apply bg-white; */
   }
   .popup {
     @apply bg-white p-5 shadow-2xl w-1/2 rounded-lg;
   }
   .dropdown {
-    @apply absolute w-32 left-0 top-full mt-2 p-2 bg-white border border-gray-200 rounded-lg shadow-lg z-10;
+    @apply absolute bg-white border-[1px] border-[#000] min-w-[112px] py-[16px] z-10 text-[16px] top-[2vw];
+  }
+  .dropdown li {
+    @apply px-[16px] py-[8px] hover:underline cursor-pointer;
   }
   .input {
     @apply w-[80%] p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary;
@@ -31,7 +35,7 @@
     @apply fixed inset-0 flex items-center justify-center;
   }
   .popup-overlay {
-    @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50;
+    @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 w-full h-full;
   }
   .table-header {
     @apply py-4 px-6 border-b-2 border-gray-200 bg-gray-200 text-center font-semibold text-gray-700 uppercase tracking-wider;

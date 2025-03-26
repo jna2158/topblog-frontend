@@ -5,7 +5,7 @@ import useUserStore from "../../../store/useUserStore";
 import LogoutButton from "./LogoutButton";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
 
 export default function LoginButton() {
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
@@ -20,8 +20,26 @@ export default function LoginButton() {
   };
 
   return (
-    <>
-      {user ? (
+    <div>
+      {!user ? (
+        <>
+          <ul className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 text-gray-700 font-semibold">
+            <li
+              className={`cursor-pointer px-4 py-2 rounded-full ${
+                false ? "bg-black text-white" : "hover:text-black"
+              } md:hidden`}
+              onClick={handleClickLoginButton}
+            >
+              로그인
+            </li>
+          </ul>
+          <FontAwesomeIcon
+            icon={faArrowRightToBracket}
+            onClick={handleClickLoginButton}
+            className="hidden md:inline-block text-gray-700 hover:text-black text-[2rem] cursor-pointer"
+          />
+        </>
+      ) : (
         <span
           className="relative"
           onMouseEnter={() => setDropdownVisible(true)}
@@ -32,15 +50,11 @@ export default function LoginButton() {
               label={user.name + "님"}
               onClick={() => {}}
               fontSize="1.3vw"
-              className="text-gray-700 font-semibold bg-white"
-            />
-            <FontAwesomeIcon
-              icon={faChevronDown}
-              className="absolute text-[1.2vw] right-0 top-[17px]"
+              className="text-gray-700 font-semibold bg-white hover:text-black"
             />
           </div>
           {isDropdownVisible && (
-            <div className="dropdown w-auto">
+            <div className="dropdown w-auto bg-white shadow-lg">
               <div
                 className="text-[1.1vw] p-2 hover:bg-gray-100 cursor-pointer"
                 onClick={(event) => {
@@ -65,15 +79,8 @@ export default function LoginButton() {
             </div>
           )}
         </span>
-      ) : (
-        <Button
-          label="로그인"
-          onClick={handleClickLoginButton}
-          fontSize="1.3vw"
-          className="text-gray-600 bg-[#C5FFAE] ml-10"
-        />
       )}
       {isLoginPopupOpen && <LoginPopup setIsOpen={setIsLoginPopupOpen} />}
-    </>
+    </div>
   );
 }

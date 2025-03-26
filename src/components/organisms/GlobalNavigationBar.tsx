@@ -3,18 +3,24 @@ import Logo from "../atoms/Logo";
 import PaymentDropdownButton from "../molecules/button/PaymentDropdownButton";
 import DownloadDropdownButton from "../molecules/button/DownloadDropdownButton";
 import LoginButton from "../molecules/button/LoginButton";
+import IntroButton from "../molecules/button/IntroButton";
+import Drawer from "./Drawer";
 
 export default function GlobalNavigationBar() {
   return (
-    <div className="w-full h-[10vh] bg-white py-3 border-b border-gray-300">
-      <div className="flex items-center justify-between w-full h-full px-[10vw]">
+    <header className="h-[8vh] border-b border-[#ddd] bg-white">
+      <div className="flex items-center justify-between h-full max-w-[90vw] m-auto px-4">
         <Logo />
-        <div className="relative flex space-x-4">
+        <nav className="hidden md:flex items-center space-x-7">
+          <IntroButton />
           <PaymentDropdownButton />
           <DownloadDropdownButton />
           <LoginButton />
+        </nav>
+        <div className="md:hidden">
+          <Drawer />
         </div>
       </div>
-    </div>
+    </header>
   );
 }

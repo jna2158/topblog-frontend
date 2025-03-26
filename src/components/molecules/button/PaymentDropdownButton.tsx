@@ -1,47 +1,46 @@
-import React, { useState } from "react";
-import Button from "../../atoms/Button";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
-export default function PaymentDropdownButton() {
-  const [isDropdownVisible, setDropdownVisible] = useState(false);
+interface PaymentDropdownButtonProps {
+  drawClick?: () => void;
+}
+
+export default function PaymentDropdownButton({
+  drawClick,
+}: PaymentDropdownButtonProps) {
   const navigate = useNavigate();
+  const location = useLocation();
 
   return (
-    <span
-      className="relative"
-      onMouseOver={() => setDropdownVisible(true)}
-      onMouseLeave={() => setDropdownVisible(false)}
-    >
-      <Button
-        label="구매하기"
-        onClick={() => {}}
-        fontSize="1.3vw"
-        className="bg-white text-gray-600"
-      />
-      {isDropdownVisible && (
-        <div className="dropdown w-[10vw] top-[3vw]">
-          <div
-            className="text-[1vw] p-2 hover:bg-gray-100 cursor-pointer"
-            onClick={(event) => {
-              setDropdownVisible(false);
-              navigate("/credit");
-              event.stopPropagation();
-            }}
-          >
-            크레딧 구매
-          </div>
-          <div
-            className="text-[1vw] p-2 hover:bg-gray-100 cursor-pointer"
-            onClick={(event) => {
-              setDropdownVisible(false);
-              navigate("/pro");
-              event.stopPropagation();
-            }}
-          >
-            프로버전 구매
-          </div>
-        </div>
-      )}
-    </span>
+    <ul className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 text-gray-700 font-semibold">
+      <li
+        className={`cursor-pointer px-4 py-2 rounded-full ${
+          location.pathname === "/credit"
+            ? "bg-black text-white"
+            : "hover:text-black"
+        }`}
+        onClick={(event) => {
+          navigate("/credit");
+          event.stopPropagation();
+          drawClick?.();
+        }}
+      >
+        크레딧 구매
+      </li>
+      <li
+        className={`cursor-pointer px-4 py-2 rounded-full ${
+          location.pathname === "/pro"
+            ? "bg-black text-white"
+            : "hover:text-black"
+        }`}
+        onClick={(event) => {
+          navigate("/pro");
+          event.stopPropagation();
+          drawClick?.();
+        }}
+      >
+        PRO 버전 구매
+      </li>
+    </ul>
   );
 }

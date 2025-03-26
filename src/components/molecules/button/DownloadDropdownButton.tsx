@@ -1,46 +1,74 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Button from "../../atoms/Button";
 import useDownloadProgram from "../../../hooks/useDownloadProgram";
+import { faDownload } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function DownloadDropdownButton() {
+interface DownloadDropdownButtonProps {
+  drawClick?: () => void;
+}
+
+export default function DownloadDropdownButton({
+  drawClick,
+}: DownloadDropdownButtonProps) {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
   const downloadProgram = useDownloadProgram;
+  const dropdownRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setDropdownVisible(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleDownload = (os: "Windows" | "Mac") => {
+    setDropdownVisible(false);
+    downloadProgram(os);
+    drawClick?.();
+  };
 
   return (
-    <span
-      className="relative"
-      onMouseEnter={() => setDropdownVisible(true)}
-      onMouseLeave={() => setDropdownVisible(false)}
-    >
+    <span className="relative hidden md:inline-block" ref={dropdownRef}>
       <Button
-        label="다운로드"
-        onClick={() => {}}
-        fontSize="1.3vw"
-        className="bg-white text-gray-600"
+        label={
+          <>
+            다운로드 <FontAwesomeIcon icon={faDownload} />
+          </>
+        }
+        onClick={() => setDropdownVisible(!isDropdownVisible)}
+        className="bg-white text-gray-700 font-semibold hover:text-black"
       />
       {isDropdownVisible && (
-        <div className="dropdown w-[10vw] top-[3vw]">
-          <div
-            className="text-[1vw] p-2 hover:bg-gray-100 cursor-pointer"
+        <ul className="dropdown">
+          <li
             onClick={(event) => {
-              setDropdownVisible(false);
-              downloadProgram("Windows");
+              handleDownload("Windows");
               event.stopPropagation();
+              drawClick?.();
             }}
           >
-            Windows 다운로드
-          </div>
-          <div
-            className="text-[1vw] p-2 hover:bg-gray-100 cursor-pointer"
+            Windows
+          </li>
+          <li
             onClick={(event) => {
-              setDropdownVisible(false);
-              downloadProgram("Mac");
+              handleDownload("Mac");
               event.stopPropagation();
+              drawClick?.();
             }}
           >
-            Mac 다운로드
-          </div>
-        </div>
+            Mac
+          </li>
+        </ul>
       )}
     </span>
   );
